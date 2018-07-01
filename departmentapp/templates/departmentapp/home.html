@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h3>TABLE</h3>
+    <table>
+        <tr>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Associated Department</th>
+        </tr>
+        {% for result in results %}
+            <tr>
+                <td>{{ result.course_code }}</td>
+                <td>{{ result.course_name }}</td>
+                <td>{{ result.department_id }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
