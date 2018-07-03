@@ -3,6 +3,10 @@ from django.db import connection,transaction
 
 # Create your views here.
 
+
+def index(request):
+    return render(request,'facultyapp/index.html')
+
 def home(request):
     with connection.cursor() as cursor:
         query1 = '''SELECT * FROM course;'''
