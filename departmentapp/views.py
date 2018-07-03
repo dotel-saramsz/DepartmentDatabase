@@ -4,6 +4,10 @@ from . import tables
 
 # Create your views here.
 
+
+def index(request):
+    return render(request,'facultyapp/index.html')
+
 def home(request):
     test = tables.employee.insert(9999,'David','','Seaman',None,None,7787,8878,None,1)
     print(test)
