@@ -4,19 +4,19 @@
 {% block content %}
     <div class="row">
          <div class="page-header col-lg-12">
-             <h3>Academic Staff</h3>
+             <h3>Non Academic Staff</h3>
          </div>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <button class="btn btn-success pull-right" data-toggle="modal" data-target="#addAcademicModal" >
-                    <span class="glyphicon glyphicon-pencil"></span> Add Academic Staff
+                    <span class="glyphicon glyphicon-pencil"></span> New Recruitment
             </button>
             <div class="modal" id="addAcademicModal" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="modal-title"><h3>Add Academic Staff Form
+                            <div class="modal-title"><h3>Add Non-Academic Staff Form
                                 <button class="close" data-dismiss="modal">&times</button></h3>
                             </div>
 
@@ -67,54 +67,18 @@
                                 </div>
                                 <hr>
 
-                                <strong class="text-info">Academic Details</strong>
-                                <div class="form-group">
-                                    <label for="salutation">Salutation</label>
-                                    <input type="text" class="form-control" id="salutation">
-                                </div>
-                                <div class="form-group">
-                                    <label for="designation">Designation</label>
-                                    <input type="text" class="form-control" id="designation">
-                                </div>
-                                <div class="form-group">
-                                    <label for="serviceType">Service Type</label>
-                                    <input name="Service Type" id="serviceType" list="stype" class="form-control">
-                                    <datalist id="stype">
-                                        <option value=""></option>
-                                        <option value="Full-time"></option>
-                                        <option value="Part-time"></option>
-                                    </datalist>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contractType">Contract Type</label>
-                                    <input name="Contract Type" id="contractType" list="ctype" class="form-control">
-                                    <datalist id="ctype">
-                                        <option value=""></option>
-                                        <option value="IOE Contract"></option>
-                                        <option value="TU Contract"></option>
-                                        <option value="Course Contract"></option>
-                                    </datalist>
-                                </div>
-                                <div class="form-group">
-                                    <label for="qualification">Qualification</label>
-                                    <input type="text" class="form-control" id="qualification">
-                                </div>
+                                <strong class="text-info">Non-Academic Staff Details</strong>
                                 <div class="form-group">
                                     <label for="post">Post</label>
                                     <select name="post_id" id = "post" class="form-control">
                                         <option value="" selected></option>
-                                        <option value="1">HOD</option>
-                                        <option value="2">DHOD</option>
-                                        <option value="3">M.Sc Coordinator</option>
+                                        <option value="1">Admin</option>
+                                      <option value="2">Office Helper</option>
                                     </select>
                                 </div>
-                                <hr>
 
-                                <strong class="text-info">Course Details</strong>
-                                <div class="form-group">
-                                    <label for="courseCode">course_code</label>
-                                    <input type="text" class="form-control" id="courseCode">
-                                </div>
+
+
 
 
                             </form>
