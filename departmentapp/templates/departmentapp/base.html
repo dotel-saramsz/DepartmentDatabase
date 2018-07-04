@@ -15,14 +15,12 @@
     <link href="{% static 'css/sidebar.css' %}" rel="stylesheet">
 
     <style>
-    {% block extracss %}
-
     .modal-backdrop {
         opacity: 0.8;
     }
-    {% endblock extracss %}
     </style>
-
+    {% block extracss %}
+    {% endblock extracss %}
 
 </head>
 
@@ -47,6 +45,9 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    {% block extrajs %}
+    {% endblock %}
 
 </body>
 

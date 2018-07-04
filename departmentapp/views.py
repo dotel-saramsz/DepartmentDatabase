@@ -10,8 +10,8 @@ def home(request):
     print(result)
     return render(request,'departmentapp/home.html',{'result':result})
 
-def dashboard(request,dept_id):
-    result = tables.department.get("dept_id = '{}'".format(dept_id))
+def dashboard(request,dept_code):
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
     if not result['error']:
         # try catch block check if empty record is returned through indexing operation
         try:
@@ -63,10 +63,29 @@ def dashboard(request,dept_id):
     return render(request,'departmentapp/dashboard.html',{'result':result})
 
 def academic(request,dept_code):
-    department_info = tables.department.get('')
-    column_names = 'staff_id,salutation,staff_fname,staff_mname,staff_lname,email,mobile_contact,designation'
-    result = tables.get(tables.join('academic','employee'),column_names,)
-    return render(request,'departmentapp/academic.html')
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the entire list of academic staffs in that department
+            column_names = 'staff_id,salutation,staff_fname,staff_mname,staff_lname,email,mobile_contact,designation'
+            staff_list = tables.get(tables.join('academic','employee'),column_names,'department_id = {}'.format(result['department']['dept_id']))
+            if staff_list['error']:
+                raise Exception('Academic Staff retrieval error')
+            result['staff_list'] = staff_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/academic.html', {'result': result})
+
 
 def nonacademic(request,dept_code):
     return render(request,'departmentapp/nonacademic.html')
