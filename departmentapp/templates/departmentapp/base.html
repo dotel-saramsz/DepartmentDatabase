@@ -33,27 +33,8 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper" style=" display: block;">
-            <ul class="sidebar-nav" style="font-size: larger;padding: 15% 0;">
-                <li class="sidebar-brand">
-                    {% block deptHeader %}
-                    {% endblock %}
-               </li>
-                <li>
-                    <a href="#"><span class="fa fa-dashboard"></span> &nbsp; Dashboard</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-user"></span> &nbsp; Academic Staff</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-user-secret"></span> &nbsp; Non Academic Staff</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-book"></span>  &nbsp; Course</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa fa-table"></span>  &nbsp; Subject Assignment</a>
-                </li>
-            </ul>
+            {% block sidebar %}
+            {% endblock %}
         </div>
 
         <div id="page-wrapper" style="padding: 0 5%;">

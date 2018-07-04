@@ -1,5 +1,9 @@
-{% extends 'facultyapp/base.html' %}
+{% extends 'departmentapp/base.html' %}
 {% load static %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code='doece' %}
+{% endblock %}
 
 {% block content %}
     <div class="row">
