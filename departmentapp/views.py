@@ -6,7 +6,7 @@ from . import tables
 
 
 def index(request):
-    return render(request,'facultyapp/index.html')
+    return render(request,'departmentapp/index.html')
 
 def home(request):
     test = tables.employee.insert(9999,'David','','Seaman',None,None,7787,8878,None,1)
