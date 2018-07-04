@@ -5,10 +5,8 @@
 
 <head>
 
-    <meta charset="utf-8">
+   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Department Faculty and Staff Database</title>
 
@@ -16,20 +14,30 @@
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/sidebar.css' %}" rel="stylesheet">
 
+    <style>
+    {% block extracss %}
+
+    .modal-backdrop {
+        opacity: 0.8;
+    }
+    {% endblock extracss %}
+    </style>
+
+
 </head>
 
 <body>
 
 
     <div id="wrapper" style="margin: auto;">
-        
+
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav" style="font-size: larger;padding: 10% 0;">
+        <div id="sidebar-wrapper" style=" display: block;">
+            <ul class="sidebar-nav" style="font-size: larger;padding: 15% 0;">
                 <li class="sidebar-brand">
                     {% block deptHeader %}
                     {% endblock %}
-                </li>
+               </li>
                 <li>
                     <a href="#"><span class="fa fa-dashboard"></span> &nbsp; Dashboard</a>
                 </li>
@@ -40,18 +48,15 @@
                     <a href="#"><span class="fa fa-user-secret"></span> &nbsp; Non Academic Staff</a>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-book"></span>  &nbsp; Subjects</a>
+                    <a href="#"><span class="fa fa-book"></span>  &nbsp; Course</a>
                 </li>
                 <li>
                     <a href="#"><span class="fa fa-table"></span>  &nbsp; Subject Assignment</a>
                 </li>
-                <li>
-                    <a href="#"><span class="fa fa-search"></span>  &nbsp; Search</a>
-                </li>
             </ul>
         </div>
 
-       <div id="page-wrapper" style="padding: 0 5%;">
+        <div id="page-wrapper" style="padding: 0 5%;">
             {% block content %}
             {% endblock content %}
         </div>

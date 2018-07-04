@@ -2,37 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b5035b-4964-421b-9f5b-f61d9224fa9f" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/tables.py" afterPath="$PROJECT_DIR$/departmentapp/tables.py" />
       <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/urls.py" afterPath="$PROJECT_DIR$/departmentapp/urls.py" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/views.py" afterPath="$PROJECT_DIR$/departmentapp/views.py" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-grid.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-grid.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-reboot.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-reboot.min.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/static/css/bootstrap.min.css" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.min.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/static/js/bootstrap.min.js" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.min.js" afterPath="$PROJECT_DIR$/static/js/jquery.min.js" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.min.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.min.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.min.map" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -65,21 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+            <state relative-caret-position="-88">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
-              <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+              <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -124,11 +98,11 @@
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/index.html" />
         <option value="$PROJECT_DIR$/departmentapp/urls.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" />
         <option value="$PROJECT_DIR$/static/css/sidebar.css" />
         <option value="$PROJECT_DIR$/departmentapp/tables.py" />
         <option value="$PROJECT_DIR$/departmentapp/views.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" />
       </list>
     </option>
   </component>
@@ -507,14 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-394">
@@ -549,10 +515,18 @@
     <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
-          <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-88">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
