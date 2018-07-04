@@ -5,13 +5,18 @@ from . import tables
 # Create your views here.
 
 
-def index(request):
-    return render(request,'departmentapp/index.html')
-
 def home(request):
+    result = tables.department.getall()
+    print(result)
+    return render(request,'departmentapp/home.html',{'result':result})
+
+def index(request,dept_code):
+    return render(request,'departmentapp/base.html',{'dept_code': dept_code.upper()})
+
+def test(request):
     test = tables.employee.insert(9999,'David','','Seaman',None,None,7787,8878,None,1)
     print(test)
-    return render(request,'departmentapp/home.html')
+    return render(request,'departmentapp/test.html')
 
     # with connection.cursor() as cursor:
     #     query1 = '''SELECT * FROM course;'''
@@ -26,7 +31,7 @@ def home(request):
     #             row = dict(zip(columns,result))
     #             rows.append(row)
     #         print(rows)
-    #         return render(request,'departmentapp/home.html',{'results':rows})
+    #         return render(request,'departmentapp/test.html',{'results':rows})
     #
     #     except Exception as e:
     #         print('Couldnt fetch data due to error ... '+ str(e))
