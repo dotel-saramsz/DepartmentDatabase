@@ -5,10 +5,34 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/departmentapp/tables.py" afterPath="$PROJECT_DIR$/departmentapp/tables.py" />
       <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
       <change beforePath="$PROJECT_DIR$/departmentapp/urls.py" afterPath="$PROJECT_DIR$/departmentapp/urls.py" />
       <change beforePath="$PROJECT_DIR$/departmentapp/views.py" afterPath="$PROJECT_DIR$/departmentapp/views.py" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-grid.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-grid.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-reboot.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap-reboot.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/static/css/bootstrap.min.css" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.bundle.min.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/static/js/bootstrap.min.js" />
+      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.min.js" afterPath="$PROJECT_DIR$/static/js/jquery.min.js" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.min.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.slim.min.map" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,37 +46,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentdb/urls.py">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="344">
+              <caret line="137" column="143" lean-forward="false" selection-start-line="137" selection-start-column="143" selection-end-line="137" selection-end-column="143" />
               <folding>
-                <element signature="e#636#668#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#1843#1864#0#HTML" expanded="true" />
+                <element signature="e#2319#2346#0#HTML" expanded="true" />
+                <element signature="e#3484#3511#0#HTML" expanded="true" />
+                <element signature="e#4697#4724#0#HTML" expanded="true" />
+                <element signature="e#5542#5601#0#HTML" expanded="true" />
+                <element signature="e#5851#5869#0#HTML" expanded="true" />
+                <element signature="e#6786#6845#0#HTML" expanded="true" />
+                <element signature="e#7098#7116#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,29 +68,21 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="882">
-              <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#994#1000#0#HTML" expanded="true" />
-                <element signature="e#1123#1129#0#HTML" expanded="true" />
-                <element signature="e#1264#1270#0#HTML" expanded="true" />
-                <element signature="e#1403#1409#0#HTML" expanded="true" />
-                <element signature="e#1533#1539#0#HTML" expanded="true" />
-                <element signature="e#1674#1680#0#HTML" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="18">
+              <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-              <folding />
+            <state relative-caret-position="522">
+              <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,13 +90,14 @@
       <file leaf-file-name="tables.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+            <state relative-caret-position="-394">
+              <caret line="45" column="104" lean-forward="false" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
               <folding>
-                <marker date="1530679158545" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
-                <marker date="1530679158545" expanded="true" signature="184:210" ph="INSERT INTO " />
-                <marker date="1530679158545" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
-                <marker date="1530679158545" expanded="true" signature="749:775" ph="SELECT {} FR... " />
+                <marker date="1530696445546" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
+                <marker date="1530696445546" expanded="true" signature="184:210" ph="INSERT INTO " />
+                <marker date="1530696445546" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
+                <marker date="1530696445546" expanded="true" signature="749:775" ph="SELECT {} FR... " />
+                <marker date="1530696445546" expanded="true" signature="1414:1445" ph="SELECT count... missing_value" />
               </folding>
             </state>
           </provider>
@@ -123,10 +123,12 @@
         <option value="$PROJECT_DIR$/departmentdb/settings.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/index.html" />
         <option value="$PROJECT_DIR$/departmentapp/urls.py" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html" />
+        <option value="$PROJECT_DIR$/static/css/sidebar.css" />
         <option value="$PROJECT_DIR$/departmentapp/tables.py" />
         <option value="$PROJECT_DIR$/departmentapp/views.py" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
       </list>
     </option>
   </component>
@@ -195,6 +197,18 @@
               <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -225,8 +239,8 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="departmentdb.settings" />
+        <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/../../../Education/Practice/Python Practice/PycharmTest/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -238,7 +252,7 @@
       <option name="port" value="8000" />
       <option name="host" value="" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://127.0.0.1:8000/" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/doece" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -312,7 +326,7 @@
         <state relative-caret-position="90">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
-            <element signature="e#636#668#0" expanded="true" />
+            <element signature="e#636#668#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -322,7 +336,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="36" lean-forward="false" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -350,10 +364,11 @@
         <state relative-caret-position="468">
           <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
           <folding>
-            <marker date="1530679158545" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
-            <marker date="1530679158545" expanded="true" signature="184:210" ph="INSERT INTO " />
-            <marker date="1530679158545" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
-            <marker date="1530679158545" expanded="true" signature="749:775" ph="SELECT {} FR... " />
+            <marker date="1530696445546" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
+            <marker date="1530696445546" expanded="true" signature="184:210" ph="INSERT INTO " />
+            <marker date="1530696445546" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
+            <marker date="1530696445546" expanded="true" signature="749:775" ph="SELECT {} FR... " />
+            <marker date="1530696445546" expanded="true" signature="1414:1445" ph="SELECT count... missing_value" />
           </folding>
         </state>
       </provider>
@@ -371,7 +386,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -381,7 +396,7 @@
         <state relative-caret-position="90">
           <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
-            <element signature="e#636#668#0" expanded="true" />
+            <element signature="e#636#668#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -445,7 +460,7 @@
         <state relative-caret-position="90">
           <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding>
-            <element signature="e#636#668#0" expanded="true" />
+            <element signature="e#636#668#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -469,59 +484,75 @@
     <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="50" lean-forward="false" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+          <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-          <folding>
-            <marker date="1530679158545" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
-            <marker date="1530679158545" expanded="true" signature="184:210" ph="INSERT INTO " />
-            <marker date="1530679158545" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
-            <marker date="1530679158545" expanded="true" signature="749:775" ph="SELECT {} FR... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#994#1000#0#HTML" expanded="true" />
-            <element signature="e#1123#1129#0#HTML" expanded="true" />
-            <element signature="e#1264#1270#0#HTML" expanded="true" />
-            <element signature="e#1403#1409#0#HTML" expanded="true" />
-            <element signature="e#1533#1539#0#HTML" expanded="true" />
-            <element signature="e#1674#1680#0#HTML" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+        <state relative-caret-position="884">
+          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/sidebar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="72" column="1" lean-forward="true" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-394">
+          <caret line="45" column="104" lean-forward="false" selection-start-line="45" selection-start-column="104" selection-end-line="45" selection-end-column="104" />
+          <folding>
+            <marker date="1530696445546" expanded="true" signature="184:208" ph="INSERT INTO missing_value... " />
+            <marker date="1530696445546" expanded="true" signature="184:210" ph="INSERT INTO " />
+            <marker date="1530696445546" expanded="true" signature="749:773" ph="SELECT missi... missing_value" />
+            <marker date="1530696445546" expanded="true" signature="749:775" ph="SELECT {} FR... " />
+            <marker date="1530696445546" expanded="true" signature="1414:1445" ph="SELECT count... missing_value" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="137" column="143" lean-forward="false" selection-start-line="137" selection-start-column="143" selection-end-line="137" selection-end-column="143" />
+          <folding>
+            <element signature="e#1843#1864#0#HTML" expanded="true" />
+            <element signature="e#2319#2346#0#HTML" expanded="true" />
+            <element signature="e#3484#3511#0#HTML" expanded="true" />
+            <element signature="e#4697#4724#0#HTML" expanded="true" />
+            <element signature="e#5542#5601#0#HTML" expanded="true" />
+            <element signature="e#5851#5869#0#HTML" expanded="true" />
+            <element signature="e#6786#6845#0#HTML" expanded="true" />
+            <element signature="e#7098#7116#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

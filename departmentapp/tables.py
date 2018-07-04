@@ -21,6 +21,7 @@ def delete():
 
 def get(table_name,column_names,condition):
     query = '''SELECT {} FROM {} WHERE {};'''.format(column_names,table_name,condition)
+    print(query)
     with connection.cursor() as cursor:
         try:
             cursor.execute(query)
@@ -36,11 +37,39 @@ def get(table_name,column_names,condition):
         except Exception as e:
             return {'error': True, 'message': str(e)}
 
+def count(table_name,column_name,condition):
+    query = '''SELECT count({}) FROM {} WHERE {};'''.format(column_name,table_name,condition)
+    print(query)
+    with connection.cursor() as cursor:
+        try:
+            cursor.execute(query)
+            result = cursor.fetchone()[0]   #By default, it returns a tuple like (count,) so indexing...
+            print(result)
+            return {'error': False, 'value': result}
+        except Exception as e:
+            return {'error': True, 'message': str(e)}
+
+def join(table1,table2,type='natural',on=None):
+    joinstr = '{} {} join {} '.format(table1,type,table2)
+    if on is not None:
+        joinstr += 'on = {}'.format(on)
+    return joinstr
 
 class department:
 
-    def getall():
-        return get('department','*',condition=1)
+    def getall(column_names=None):
+        if column_names:
+            column_names = ','.join(column_names)
+        else:
+            column_names = '*'
+        return get('department',column_names,condition=1)
+
+    def get(condition,column_names=None):
+        if column_names:
+            column_names = ','.join(column_names)
+        else:
+            column_names = '*'
+        return get('department',column_names,condition)
 
 
 
@@ -114,6 +143,23 @@ class course:
                 input_values.append(argdict[field])
 
         return insert('course', '(' + ','.join(input_fields) + ')', tuple(input_values))
+
+    def getall(column_names=None):
+        if column_names:
+            column_names = ','.join(column_names)
+        else:
+            column_names = '*'
+        return get('course',column_names,condition=1)
+
+    def get(condition,column_names=None):
+        if column_names:
+            column_names = ','.join(column_names)
+        else:
+            column_names = '*'
+        return get('course',column_names,condition)
+
+    def count(condition=1):
+        return count('course','*',condition)
 
 
 class instructs:
