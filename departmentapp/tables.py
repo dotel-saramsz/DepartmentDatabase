@@ -8,10 +8,10 @@ def insert(table_name,field_names,param_tuple):
         try:
             cursor.execute(query)
             transaction.commit()
-            return ('Successfully inserted {} into the table {}'.format(str(param_tuple),table_name))
+            return {'error': False, 'message':'Successfully inserted {} into the table {}'.format(str(param_tuple),table_name)}
         except Exception as e:
             transaction.rollback()
-            return ("Error: Couldn't perform the insert operation in {}. {}".format(table_name,str(e)))
+            return {'error': True, 'message':"Error: Couldn't perform the insert operation in {}. {}".format(table_name,str(e))}
 
 def update():
     pass
@@ -52,22 +52,18 @@ def count(table_name,column_name,condition):
 def join(table1,table2,type='natural',on=None):
     joinstr = '{} {} join {} '.format(table1,type,table2)
     if on is not None:
-        joinstr += 'on = {}'.format(on)
+        joinstr += 'on {}'.format(on)
     return joinstr
 
 class department:
 
     def getall(column_names=None):
-        if column_names:
-            column_names = ','.join(column_names)
-        else:
+        if column_names is None:
             column_names = '*'
         return get('department',column_names,condition=1)
 
     def get(condition,column_names=None):
-        if column_names:
-            column_names = ','.join(column_names)
-        else:
+        if column_names is None:
             column_names = '*'
         return get('department',column_names,condition)
 
@@ -122,11 +118,35 @@ class nonacademic:
 
 
 class academic_post:
-    pass
+    def getall(column_names=None):
+        if column_names is None:
+            column_names = '*'
+        return get('academic_post',column_names,condition=1)
+
+    def get(condition,column_names=None):
+        if column_names is None:
+            column_names = '*'
+        return get('academic_post',column_names,condition)
+
+    def count(condition=1):
+        return count('academic_post','*',condition)
+
 
 
 class nonacademic_post:
-    pass
+    def getall(column_names=None):
+        if column_names is None:
+            column_names = '*'
+        return get('nonacademic_post',column_names,condition=1)
+
+    def get(condition,column_names=None):
+        if column_names is None:
+            column_names = '*'
+        return get('nonacademic_post',column_names,condition)
+
+    def count(condition=1):
+        return count('nonacademic_post','*',condition)
+
 
 
 class course:
@@ -145,16 +165,12 @@ class course:
         return insert('course', '(' + ','.join(input_fields) + ')', tuple(input_values))
 
     def getall(column_names=None):
-        if column_names:
-            column_names = ','.join(column_names)
-        else:
+        if column_names is None:
             column_names = '*'
         return get('course',column_names,condition=1)
 
     def get(condition,column_names=None):
-        if column_names:
-            column_names = ','.join(column_names)
-        else:
+        if column_names is None:
             column_names = '*'
         return get('course',column_names,condition)
 

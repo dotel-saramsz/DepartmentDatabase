@@ -88,8 +88,119 @@ def academic(request,dept_code):
 
 
 def nonacademic(request,dept_code):
-    return render(request,'departmentapp/nonacademic.html')
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the entire list of academic staffs in that department
+            column_names = 'staff_id,staff_fname,staff_mname,staff_lname,email,mobile_contact,post_name'
+            staff_list = tables.get(tables.join(tables.join('nonacademic', 'employee'),'nonacademic_post','left',
+                                                on='nonacademic.post_id=nonacademic_post.post_id'), column_names,
+                                    'department_id = {}'.format(result['department']['dept_id']))
+            if staff_list['error']:
+                raise Exception('Non-Academic Staff retrieval error')
+            result['staff_list'] = staff_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/nonacademic.html', {'result': result})
+
 
 def course(request,dept_code):
-    return render(request,'departmentapp/course.html')
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
 
+            #   To get the entire list of academic staffs in that department
+            column_names = 'course_code,course_name'
+            course_list = tables.course.get('department_id = {}'.format(result['department']['dept_id']),column_names)
+            if course_list['error']:
+                raise Exception('Course List retrieval error')
+            result['course_list'] = course_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/course.html', {'result': result})
+
+
+def add_academic(request,dept_code):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the available posts' list for form dropdown
+            postlist = tables.academic_post.getall()
+            if postlist['error']:
+                raise Exception('Post List retrieval error')
+            result['postlist'] = postlist['rows']
+
+            #   To get the course catered by the department for the form dropdown
+            courselist = tables.course.get('department_id = {}'.format(result['department']['dept_id']))
+            if courselist['error']:
+                raise Exception('Available Course List retrieval error')
+            result['courselist'] = courselist['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    if request.method == 'GET':
+        return render(request, 'departmentapp/addacademic.html', {'result': result})
+
+    elif request.method == 'POST':
+        print(request.POST)
+        formdata = dict(request.POST.copy())
+        # Here, we need to insert to 3 tables based on the submitted data: employee, academic and canteach
+        try:
+            # Insert into employee table
+            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),formdata.get('staff_fname')[0],
+                                                    formdata.get('staff_mname')[0],formdata.get('staff_lname')[0],
+                                                    None,formdata.get('email')[0],int(formdata.get('home_contact')[0]),
+                                                    int(formdata.get('mobile_contact')[0]),formdata.get('address')[0],
+                                                    result['department']['dept_id'])
+            if employeeInsert['error']:
+                print('Error in inserting employee details ' + employeeInsert['message'])
+                raise Exception('Error in inserting employee details '+employeeInsert['message'])
+            # Insert into academic table
+            academicInsert = tables.academic.insert(int(formdata.get('staff_id')[0]),formdata.get('salutation')[0],
+                                                    formdata.get('designation')[0],formdata.get('service_type')[0],
+                                                    formdata.get('contract_type')[0],formdata.get('qualification')[0],
+                                                    None if formdata.get('post_id')[0] == '' else int(
+                                                        formdata.get('post_id')[0]))
+            if academicInsert['error']:
+                print('Error in inserting academic details ' + academicInsert['message'])
+                raise Exception('Error in inserting academic details ' + academicInsert['message'])
+            # Insert into canteach table
+            for eachcourse in formdata.get('course_id'):
+                canteachInsert = tables.canteach.insert(int(formdata.get('staff_id')[0]),eachcourse)
+                if canteachInsert['error']:
+                    print('Error in inserting course details ' + canteachInsert['message'])
+                    raise Exception('Error in inserting course details '+ canteachInsert['message'])
+            submissionresult = {'error': False, 'message': 'DONE: Successfully registered the academic staff with staff ID: {}'.format(formdata.get('staff_id')[0])}
+
+        except Exception as e:
+             submissionresult = {'error': True, 'message': 'REGISTRATION ERROR: '+ str(e)}
+
+        return render(request, 'departmentapp/addacademic.html', {'result': result, 'submissionresult': submissionresult})

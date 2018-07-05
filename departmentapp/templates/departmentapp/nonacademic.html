@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block sidebar %}
-    {% include 'departmentapp/sidebar.html' with dept_code='doece' %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
 {% endblock %}
 
 {% block content %}
+    {% if not result.error %}
     <div class="row">
          <div class="page-header col-lg-12">
              <h3>Non Academic Staff</h3>
@@ -133,20 +134,51 @@
                             <th>Staff Name</th>
                             <th>E-mail</th>
                             <th>Phone Number</th>
+                            <th>Post</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr class="odd gradeX">
-                                <td>1000</td>
-                                <td>Aman Shakya</td>
-                                <td>iamaman@me.io</td>
-                                <td>984444777788</td>
-                            </tr>
-
+                            {% for staff in result.staff_list %}
+                                <tr class="staff-row" data-href="{% url 'departmentapp:dashboard' result.department.dept_code %}">
+                                    <td>{{ staff.staff_id }}</td>
+                                    <td>{{ staff.staff_fname }} {{ staff.staff_mname }} {{ staff.staff_lname }}</td>
+                                    <td>{{ staff.email }}</td>
+                                    <td>{{ staff.mobile_contact }}</td>
+                                    <td>{{ staff.post_name }}</td>
+                                </tr>
+                            {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h3>ERROR</h3>
+            <p>{{ result.message }}</p>
+        </div>
+    {% endif %}
 
+{% endblock %}
+
+{% block extrajs %}
+    <script>
+        var staffrows = document.querySelectorAll('.staff-row');
+        staffrows.forEach(function (row){
+            row.addEventListener('mouseenter',function (event) {
+               this.style.backgroundColor = '#34373a';
+               this.style.color = 'white';
+               console.log('MouseEnter: '+this.getAttribute('data-href'));
+            });
+            row.addEventListener('mouseleave',function (event) {
+               this.style.backgroundColor = 'white';
+               this.style.color = '#333';
+               console.log('MouseLeave: '+this.getAttribute('data-href'));
+            });
+            row.addEventListener('click',function (event) {
+                window.location = this.getAttribute('data-href');
+                console.log('MouseOver: '+this.getAttribute('data-href'));
+            });
+        })
+    </script>
 {% endblock %}

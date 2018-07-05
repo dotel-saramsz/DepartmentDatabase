@@ -1,0 +1,177 @@
+{% extends 'departmentapp/base.html' %}
+{% load static %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
+{% endblock %}
+
+{% block content %}
+    {% if not result.error %}
+    <div class="row">
+         <div class="page-header col-lg-12">
+             <h3>Add Academic Staff</h3>
+         </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-12">
+            {% if submissionresult %}
+                <div class="row">
+                    <div class="alert {% if submissionresult.error %}alert-danger{% else %}alert-success{% endif %}">
+                        {{ submissionresult.message }}
+                    </div>
+                    <hr>
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <form enctype="multipart/form-data" id="addAcademicForm" role="form" method="post" action="{% url 'departmentapp:add_academic' result.department.dept_code %}">
+                    {% csrf_token %}
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="photo_url">Upload Profile Photo </label>
+                            <img src="{% static 'images/profile.png' %}" class="profilepicture" width="100%">
+                            <input type="file" name="photo_url" id="photo_url" accept="image/*" >
+                            <span class="small text-muted"> *Providing a profile photo is optional</span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <strong class="text-info">Basic Information</strong>
+                        <hr>
+                        <div class="form-group">
+                            <label for="staff_id">Staff ID </label>
+                            <input type="number" name="staff_id" required pattern="/d{4}" id="staff_id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="salutation">Salutation </label>
+                            <select name="salutation" id="salutation" class="form-control">
+                                <option value="Mr.">Mr.</option>
+                                <option value="Ms.">Ms.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Prof. Dr.">Prof. Dr.</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_fname">First Name </label>
+                            <input type="text" name="staff_fname" required pattern="[A-Za-z]+" id="staff_fname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_mname">Middle Name </label>
+                            <input type="text" name="staff_mname" pattern="[A-Za-z]+" id="staff_mname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_lname">Last Name </label>
+                            <input type="text" name="staff_lname" required pattern="[A-Za-z]+" id="staff_lname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email </label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="home_contact">Home Contact </label>
+                            <input type="number" name="home_contact" required pattern="/d{7}" id="home_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_contact">Mobile Contact </label>
+                            <input type="number" name="mobile_contact" required pattern="/d{10}" id="mobile_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" class="form-control" id="address">
+                        </div>
+                        <hr>
+
+                        <strong class="text-info">Additional Details</strong>
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="designation">Designation</label>
+                            <select name="designation" id="designation" class="form-control">
+                                <option value="Lecturer" selected>Lecturer</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Reader">Reader</option>
+                                <option value="Instructor">Instructor</option>
+                                <option value="Chief Instructor">Chief Instructor</option>
+                                <option value="Senior Instructor">Senior Instructor</option>
+                                <option value="Deputy Instructor">Deputy Instructor</option>
+                                <option value="Teaching Assistant">Teaching Assistant</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Assistant Technician">Assistant Technician</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="service_type">Service Type</label>
+                            <select name="service_type" id="service_type" class="form-control">
+                                <option value=""></option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contract_type">Contract Type</label>
+                            <select name="contract_type" id="contract_type" class="form-control">
+                                <option value=""></option>
+                                <option value="IOE Contract">IOE Contract</option>
+                                <option value="TU Contract">TU Contract</option>
+                                <option value="Course Contract">Course Contract</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="qualification">Qualification</label>
+                            <select name="qualification" id="qualification" class="form-control">
+                                <option value="Bachelors">Bachelors</option>
+                                <option value="Masters" selected>Masters</option>
+                                <option value="Doctorate">Doctorate</option>
+                                <option value="Post Doctorate">Post Doctorate</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="post_id">Post</label>
+                            <select name="post_id" id = "post_id" class="form-control">
+                                <option value="" selected></option>
+                                {% for post in result.postlist %}
+                                    <option value="{{ post.post_id }}">{{ post.post_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="form-group col-lg-12">
+                        <hr>
+{#                        <label for="courseCode">#}
+                            <strong class="text-info">Courses the staff can teach</strong>
+{#                        </label>#}
+                        <hr>
+                        <div class="row">
+                            {% for course in result.courselist %}
+                                <div class="col-md-4">
+                                    <input type="checkbox" name="course_id" value="{{ course.course_code }}" > {{ course.course_name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    <input type="submit" value="Submit Form" class="form-submit btn btn-primary">
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h3>INTERNAL SERVER ERROR IN DISPLAYING FORM</h3>
+            <p>{{ result.message }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block extrajs %}
+    <script>
+
+    </script>
+{% endblock %}

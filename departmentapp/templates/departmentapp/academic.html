@@ -1,14 +1,8 @@
 {% extends 'departmentapp/base.html' %}
 {% load static %}
 
-{% block extracss %}
-    <style>
-
-    </style>
-{% endblock %}
-
 {% block sidebar %}
-    {% include 'departmentapp/sidebar.html' with dept_code='doece' %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
 {% endblock %}
 
 {% block content %}
@@ -21,123 +15,9 @@
     <div class="row">
 
         <div class="col-lg-12">
-            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#addAcademicModal" >
+            <a href="{% url 'departmentapp:add_academic' result.department.dept_code %}" class="btn btn-success pull-right" >
                     <span class="glyphicon glyphicon-pencil"></span> Add Academic Staff
-            </button>
-            <div class="modal" id="addAcademicModal" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="modal-title"><h3>Add Academic Staff Form
-                                <button class="close" data-dismiss="modal">&times</button></h3>
-                            </div>
-
-                        </div>
-                        <div class="modal-body">
-
-                            <form role="form">
-                                <strong class="text-info">Employee Details</strong>
-                                <div class="form-group">
-                                    <label for="staff_id">Staff ID </label>
-                                    <input type="number" required pattern="/d{4}" id="staff_id" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fname">First Name : </label>
-                                    <input type="text" required pattern="[A-Za-z]+" id="fname" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="mname">Middle Name : </label>
-                                    <input type="text" pattern="[A-Za-z]+" id="mname" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lname">Last Name : </label>
-                                    <input type="text" required pattern="[A-Za-z]+" id="lname" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="photo">Photo URL </label>
-                                    <input type="file" id="photo" accept="image/*" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email </label>
-                                    <input type="email" id="email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="hcontact">Home Contact </label>
-                                    <input type="number" required pattern="/d{7}" id="hcontact" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="mcontact">Mobile Contact </label>
-                                    <input type="number" required pattern="/d{10}" id="mcontact" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dateJoined">Date Joined</label>
-                                    <input type="datetime-local" class="form-control" id="dateJoined">
-                                </div>
-                                <hr>
-
-                                <strong class="text-info">Academic Details</strong>
-                                <div class="form-group">
-                                    <label for="salutation">Salutation</label>
-                                    <input type="text" class="form-control" id="salutation">
-                                </div>
-                                <div class="form-group">
-                                    <label for="designation">Designation</label>
-                                    <input type="text" class="form-control" id="designation">
-                                </div>
-                                <div class="form-group">
-                                    <label for="serviceType">Service Type</label>
-                                    <input name="Service Type" id="serviceType" list="stype" class="form-control">
-                                    <datalist id="stype">
-                                        <option value=""></option>
-                                        <option value="Full-time"></option>
-                                        <option value="Part-time"></option>
-                                    </datalist>
-                                </div>
-                                <div class="form-group">
-                                    <label for="contractType">Contract Type</label>
-                                    <input name="Contract Type" id="contractType" list="ctype" class="form-control">
-                                    <datalist id="ctype">
-                                        <option value=""></option>
-                                        <option value="IOE Contract"></option>
-                                        <option value="TU Contract"></option>
-                                        <option value="Course Contract"></option>
-                                    </datalist>
-                                </div>
-                                <div class="form-group">
-                                    <label for="qualification">Qualification</label>
-                                    <input type="text" class="form-control" id="qualification">
-                                </div>
-                                <div class="form-group">
-                                    <label for="post">Post</label>
-                                    <select name="post_id" id = "post" class="form-control">
-                                        <option value="" selected></option>
-                                        <option value="1">HOD</option>
-                                        <option value="2">Deputy HOD</option>
-                                        <option value="3">M.Sc Coordinator</option>
-                                    </select>
-                                </div>
-                                <hr>
-
-                                <strong class="text-info">Course Details</strong>
-                                <div class="form-group">
-                                    <label for="courseCode">course_code</label>
-                                    <input type="text" class="form-control" id="courseCode">
-                                </div>
-
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">OK</button>
-                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
         <div class="col-md-12" style="margin-top: 2%">
                 <form class="form" method="POST">
@@ -216,7 +96,7 @@
             });
             row.addEventListener('mouseleave',function (event) {
                this.style.backgroundColor = 'white';
-               this.style.color = 'black';
+               this.style.color = '#333';
                console.log('MouseLeave: '+this.getAttribute('data-href'));
             });
             row.addEventListener('click',function (event) {
