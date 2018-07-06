@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b5035b-4964-421b-9f5b-f61d9224fa9f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/staffprofile.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/teacherprofile.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/static/css/bootstrap.min.css" />
+      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css.map" afterPath="$PROJECT_DIR$/static/css/bootstrap.min.css.map" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,7 +33,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4698">
+            <state relative-caret-position="2754">
               <caret line="261" column="42" lean-forward="false" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -140,6 +144,7 @@
         <option value="$PROJECT_DIR$/static/js/imagePreviewer.js" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html" />
+        <option value="$PROJECT_DIR$/static/css/bootstrap.min.css" />
       </list>
     </option>
   </component>
@@ -207,6 +212,12 @@
               <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
               <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
@@ -323,14 +334,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/css/sidebar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="72" column="1" lean-forward="true" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -745,9 +748,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4698">
+        <state relative-caret-position="2754">
           <caret line="261" column="42" lean-forward="false" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
