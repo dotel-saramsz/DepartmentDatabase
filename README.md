@@ -1,6 +1,7 @@
 # DepartmentDatabase
 DBMS project to create an app to facilitate the faculty coordination in Pulchowk Campus
 
+
 MySQL connection with Django:
 
 1. Edit the database backend setting in settings.py file
@@ -11,3 +12,6 @@ MySQL connection with Django:
 
 Note:
 You need a database named 'departmentDatabase' and a running mysql server to establish a connection with the django app.
+
+This branch contains additions/modifications to the Department Database DBMS project made by Dotel.
+
