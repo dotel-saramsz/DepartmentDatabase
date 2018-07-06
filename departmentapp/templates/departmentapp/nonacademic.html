@@ -62,7 +62,7 @@
                     </thead>
                     <tbody>
                             {% for staff in result.staff_list %}
-                                <tr class="staff-row" data-href="{% url 'departmentapp:dashboard' result.department.dept_code %}">
+                                <tr class="staff-row" data-href="{% url 'departmentapp:nonacademic_profile' result.department.dept_code staff.staff_id %}">
                                     <td>{{ staff.staff_id }}</td>
                                     <td>{{ staff.staff_fname }} {{ staff.staff_mname }} {{ staff.staff_lname }}</td>
                                     <td>{{ staff.email }}</td>

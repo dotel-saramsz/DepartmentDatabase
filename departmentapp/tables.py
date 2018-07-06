@@ -59,6 +59,12 @@ def join(table1,table2,type='natural',on=None):
         joinstr += 'on {}'.format(on)
     return joinstr
 
+def intnullresolver(input_value):
+    if input_value == '':
+        return None
+    else:
+        return int(input_value)
+
 class department:
 
     def getall(column_names=None):
@@ -82,7 +88,7 @@ class employee:
         argdict = dict(zip(employee.field_names,arguments))
         input_values = []
         for field in argdict:
-            if argdict[field] is not None:
+            if argdict[field] is not None and argdict[field] != '':
                 input_fields.append(field)
                 input_values.append(argdict[field])
 

@@ -192,28 +192,31 @@ def add_academic(request,dept_code):
                 photo_url = None
 
             # Insert into employee table
-            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),
-                                                    None if formdata.get('staff_fname')[0] == '' else formdata.get('staff_fname')[0],
-                                                    None if formdata.get('staff_mname')[0] == '' else formdata.get('staff_mname')[0],
-                                                    None if formdata.get('staff_lname')[0] == '' else formdata.get('staff_lname')[0],
-                                                    photo_url,formdata.get('email')[0],int(formdata.get('home_contact')[0]),
-                                                    int(formdata.get('mobile_contact')[0]),formdata.get('address')[0],
+            employeeInsert = tables.employee.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
+                                                    formdata.get('staff_fname')[0],
+                                                    formdata.get('staff_mname')[0],
+                                                    formdata.get('staff_lname')[0],
+                                                    photo_url, formdata.get('email')[0],
+                                                    formdata.get('home_contact')[0],
+                                                    formdata.get('mobile_contact')[0],
+                                                    formdata.get('address')[0],
                                                     result['department']['dept_id'])
+
+
             if employeeInsert['error']:
                 print('Error in inserting employee details ' + employeeInsert['message'])
                 raise Exception('Error in inserting employee details '+employeeInsert['message'])
             # Insert into academic table
-            academicInsert = tables.academic.insert(int(formdata.get('staff_id')[0]),formdata.get('salutation')[0],
+            academicInsert = tables.academic.insert(tables.intnullresolver(formdata.get('staff_id')[0]),formdata.get('salutation')[0],
                                                     formdata.get('designation')[0],formdata.get('service_type')[0],
                                                     formdata.get('contract_type')[0],formdata.get('qualification')[0],
-                                                    None if formdata.get('post_id')[0] == '' else int(
-                                                        formdata.get('post_id')[0]))
+                                                    tables.intnullresolver(formdata.get('post_id')[0]))
             if academicInsert['error']:
                 print('Error in inserting academic details ' + academicInsert['message'])
                 raise Exception('Error in inserting academic details ' + academicInsert['message'])
             # Insert into canteach table
             for eachcourse in formdata.get('course_id'):
-                canteachInsert = tables.canteach.insert(int(formdata.get('staff_id')[0]),eachcourse)
+                canteachInsert = tables.canteach.insert(tables.intnullresolver(formdata.get('staff_id')[0]),eachcourse)
                 if canteachInsert['error']:
                     print('Error in inserting course details ' + canteachInsert['message'])
                     raise Exception('Error in inserting course details '+ canteachInsert['message'])
@@ -268,26 +271,22 @@ def add_nonacademic(request,dept_code):
                 photo_url = None
 
             # Insert into employee table
-            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),
-                                                    None if formdata.get('staff_fname')[0] == '' else
+            employeeInsert = tables.employee.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
                                                     formdata.get('staff_fname')[0],
-                                                    None if formdata.get('staff_mname')[0] == '' else
                                                     formdata.get('staff_mname')[0],
-                                                    None if formdata.get('staff_lname')[0] == '' else
                                                     formdata.get('staff_lname')[0],
                                                     photo_url, formdata.get('email')[0],
-                                                    int(formdata.get('home_contact')[0]),
-                                                    int(formdata.get('mobile_contact')[0]), formdata.get('address')[0],
+                                                    formdata.get('home_contact')[0],
+                                                    formdata.get('mobile_contact')[0],
+                                                    formdata.get('address')[0],
                                                     result['department']['dept_id'])
-
 
             if employeeInsert['error']:
                 print('Error in inserting employee details ' + employeeInsert['message'])
                 raise Exception('Error in inserting employee details '+employeeInsert['message'])
             # Insert into nonacademic table
-            nonacademicInsert = tables.nonacademic.insert(int(formdata.get('staff_id')[0]),
-                                                          None if formdata.get('post_id')[0] == '' else
-                                                          int(formdata.get('post_id')[0]))
+            nonacademicInsert = tables.nonacademic.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
+                                                          tables.intnullresolver(formdata.get('post_id')[0]))
             if nonacademicInsert['error']:
                 print('Error in inserting academic details ' + nonacademicInsert['message'])
                 raise Exception('Error in inserting non-academic details ' + nonacademicInsert['message'])
@@ -324,7 +323,8 @@ def add_course(request,dept_code):
         # Here, we need to insert to 1 table based on the submitted data: course
         try:
             # Insert into course table
-            courseInsert = tables.course.insert(formdata.get('course_code')[0],formdata.get('course_name')[0],
+            courseInsert = tables.course.insert(formdata.get('course_code')[0],
+                                                formdata.get('course_name')[0],
                                                 result['department']['dept_id'])
             if courseInsert['error']:
                 print('Error in inserting course details ' + courseInsert['message'])
@@ -350,3 +350,56 @@ def test(request):
                 destination.write(chunk)
         print('Finished creating the image')
     return render(request,'departmentapp/test.html')
+
+
+def academic_profile(request,dept_code,staff_id):
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the staff details, we use the view in the db, academicprofile
+            staff_details = tables.get('academicprofile','*','staff_id = {}'.format(staff_id))
+            if staff_details['error']:
+                raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
+            result['staff'] = staff_details['rows'][0]
+
+            #   To get the canteach course details
+            canteach = tables.get(tables.join('canteach','course'),'*','staff_id = {}'.format(staff_id))
+            if not canteach['error']:
+                result['canteach'] = canteach['rows']
+
+            #   To get the instructs course details
+            instructs = tables.get(tables.join('instructs', 'course'), '*', 'staff_id = {}'.format(staff_id))
+            if not instructs['error']:
+                result['instructs'] = instructs['rows']
+
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'Invalid department or staff info'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/academicprofile.html', {'result': result})
+
+
+def nonacademic_profile(request, dept_code, staff_id):
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/staffprofile.html', {'result': result})

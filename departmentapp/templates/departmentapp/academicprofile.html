@@ -1,0 +1,115 @@
+{% extends 'departmentapp/base.html' %}
+{% load static %}
+
+{% block title %}
+    Academic Profile
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
+{% endblock %}
+
+{% block content %}
+    {% if not result.error %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header text-capitalize">Academic Staff Profile</h1>
+        </div>
+    </div>
+    <div class="row" style="margin:auto;">
+        <div class="col-md-4">
+             <img class="card-img-top" src="{% if result.staff.photo_url %}{% static result.staff.photo_url %}
+                                            {% else %}{% static 'user.png' %}{% endif %}" width="100%">
+            <p></p>
+            <a href="{% url 'departmentapp:dashboard' result.department.dept_code %}" class="btn btn-block btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span> Edit Details
+            </a>
+            <a href="{% url 'departmentapp:dashboard' result.department.dept_code %}" class="btn btn-block btn-danger">
+                <span class="fa fa-edit"></span> Delete Staff
+            </a>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card" >
+              <ul class="list-group list-group-flush card-body">
+                <li class="list-group-item">
+                    <p class="card-title text-info">Staff ID</p>
+                    <h4 class="card-text "><strong>{{ result.staff.staff_id }}</strong></h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Staff Name</p>
+                    <h4 class="card-text"><strong>{{ result.staff.staff_fullname }}</strong></h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Email ID</p>
+                    <h4 class="card-text">{{ result.staff.email }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Home Contact</p>
+                    <h4 class="card-text">{{ result.staff.home_contact }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Mobile Contact</p>
+                    <h4 class="card-text">{{ result.staff.mobile_contact }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Address</p>
+                    <h4 class="card-text">{{ result.staff.address }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Designation</p>
+                    <h4 class="card-text">{{ result.staff.designation }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Service Type</p>
+                    <h4 class="card-text">{{ result.staff.service_type }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Contract Type</p>
+                    <h4 class="card-text">{{ result.staff.contract_type }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <p class="card-title text-info">Qualification</p>
+                    <h4 class="card-text">{{ result.staff.qualification }}</h4>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h4 class="card-title"><strong>Courses the staff can teach:</strong></h4>
+                    <ul class="list-group list-group-flush card-body">
+                        {% for course in result.canteach %}
+                            <li class="list-group-item">
+                                <p class="card-text">{{ course.course_name }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <h4 class="card-title"><strong>Currently taught courses:</strong></h4>
+                    <ul class="list-group list-group-flush card-body">
+                        {% for course in result.instructs %}
+                            <li class="list-group-item">
+                                <p class="card-text">{{ course.course_name }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+     </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h3>ERROR</h3>
+            <p>{{ result.message }}</p>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block extrajs %}
+{% endblock %}

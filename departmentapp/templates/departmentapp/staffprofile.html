@@ -1,10 +1,14 @@
-{% extends 'facultyapp/base.html' %}
+{% extends 'departmentapp/base.html' %}
 {% load static %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
+{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header text-capitalize">Academic Staff Profile</h1>
+            <h1 class="page-header text-capitalize">Non-Academic Staff Profile</h1>
         </div>
     </div>
     <div class="row" style="margin:auto;">
