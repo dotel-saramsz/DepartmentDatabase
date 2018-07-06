@@ -2,6 +2,10 @@ from django.db import connection,transaction
 
 def insert(table_name,field_names,param_tuple):
     # Creation of INSERT query
+    #   special case of only one value in param_tuple
+    if len(param_tuple) == 1:
+        param_tuple = '('+str(param_tuple[0])+')'
+
     with connection.cursor() as cursor:
         query = '''INSERT INTO {}{} VALUES {};'''.format(table_name,str(field_names),str(param_tuple))
         print(query)
@@ -158,7 +162,7 @@ class course:
         argdict = dict(zip(course.field_names, arguments))
         input_values = []
         for field in argdict:
-            if argdict[field] is not None:
+            if argdict[field] is not None and argdict[field] != '':
                 input_fields.append(field)
                 input_values.append(argdict[field])
 

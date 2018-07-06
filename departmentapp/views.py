@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.db import connection,transaction
+from django.conf import settings
+from django.utils.datastructures import MultiValueDictKeyError
+import os
 from . import tables
+
 
 # Create your views here.
 
@@ -174,10 +178,25 @@ def add_academic(request,dept_code):
         formdata = dict(request.POST.copy())
         # Here, we need to insert to 3 tables based on the submitted data: employee, academic and canteach
         try:
+            # Resolve the uploaded file first
+            try:
+                staff_photo = request.FILES['photo_url']
+                photo_filename = 'employee_{}{}'.format(formdata.get('staff_id')[0],os.path.splitext(str(staff_photo))[1])
+                photo_fullurl = os.path.join(settings.MEDIA_ROOT, photo_filename)
+                photo_url = photo_filename
+                with open(photo_fullurl, 'wb+') as destination:
+                    for chunk in staff_photo.chunks():
+                        destination.write(chunk)
+                print('Finished creating the image')
+            except MultiValueDictKeyError:
+                photo_url = None
+
             # Insert into employee table
-            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),formdata.get('staff_fname')[0],
-                                                    formdata.get('staff_mname')[0],formdata.get('staff_lname')[0],
-                                                    None,formdata.get('email')[0],int(formdata.get('home_contact')[0]),
+            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),
+                                                    None if formdata.get('staff_fname')[0] == '' else formdata.get('staff_fname')[0],
+                                                    None if formdata.get('staff_mname')[0] == '' else formdata.get('staff_mname')[0],
+                                                    None if formdata.get('staff_lname')[0] == '' else formdata.get('staff_lname')[0],
+                                                    photo_url,formdata.get('email')[0],int(formdata.get('home_contact')[0]),
                                                     int(formdata.get('mobile_contact')[0]),formdata.get('address')[0],
                                                     result['department']['dept_id'])
             if employeeInsert['error']:
@@ -204,3 +223,130 @@ def add_academic(request,dept_code):
              submissionresult = {'error': True, 'message': 'REGISTRATION ERROR: '+ str(e)}
 
         return render(request, 'departmentapp/addacademic.html', {'result': result, 'submissionresult': submissionresult})
+
+
+def add_nonacademic(request,dept_code):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the available posts' list for form dropdown
+            postlist = tables.nonacademic_post.getall()
+            if postlist['error']:
+                raise Exception('Post List retrieval error')
+            result['postlist'] = postlist['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    if request.method == 'GET':
+        return render(request, 'departmentapp/addnonacademic.html', {'result': result})
+
+    elif request.method == 'POST':
+        print(request.POST)
+        formdata = dict(request.POST.copy())
+        # Here, we need to insert to 2 tables based on the submitted data: employee and nonacademic
+        try:
+            # Resolve the uploaded file first
+            try:
+                staff_photo = request.FILES['photo_url']
+                photo_filename = 'employee_{}{}'.format(formdata.get('staff_id')[0],os.path.splitext(str(staff_photo))[1])
+                photo_fullurl = os.path.join(settings.MEDIA_ROOT, photo_filename)
+                photo_url = photo_filename
+                with open(photo_fullurl, 'wb+') as destination:
+                    for chunk in staff_photo.chunks():
+                        destination.write(chunk)
+                print('Finished creating the image')
+            except MultiValueDictKeyError:
+                photo_url = None
+
+            # Insert into employee table
+            employeeInsert = tables.employee.insert(int(formdata.get('staff_id')[0]),
+                                                    None if formdata.get('staff_fname')[0] == '' else
+                                                    formdata.get('staff_fname')[0],
+                                                    None if formdata.get('staff_mname')[0] == '' else
+                                                    formdata.get('staff_mname')[0],
+                                                    None if formdata.get('staff_lname')[0] == '' else
+                                                    formdata.get('staff_lname')[0],
+                                                    photo_url, formdata.get('email')[0],
+                                                    int(formdata.get('home_contact')[0]),
+                                                    int(formdata.get('mobile_contact')[0]), formdata.get('address')[0],
+                                                    result['department']['dept_id'])
+
+
+            if employeeInsert['error']:
+                print('Error in inserting employee details ' + employeeInsert['message'])
+                raise Exception('Error in inserting employee details '+employeeInsert['message'])
+            # Insert into nonacademic table
+            nonacademicInsert = tables.nonacademic.insert(int(formdata.get('staff_id')[0]),
+                                                          None if formdata.get('post_id')[0] == '' else
+                                                          int(formdata.get('post_id')[0]))
+            if nonacademicInsert['error']:
+                print('Error in inserting academic details ' + nonacademicInsert['message'])
+                raise Exception('Error in inserting non-academic details ' + nonacademicInsert['message'])
+
+            submissionresult = {'error': False, 'message': 'DONE: Successfully registered the non-academic staff with staff ID: {}'.format(formdata.get('staff_id')[0])}
+
+        except Exception as e:
+             submissionresult = {'error': True, 'message': 'REGISTRATION ERROR: '+ str(e)}
+
+        return render(request, 'departmentapp/addnonacademic.html', {'result': result, 'submissionresult': submissionresult})
+
+
+def add_course(request,dept_code):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    if request.method == 'GET':
+        return render(request, 'departmentapp/addcourse.html', {'result': result})
+
+    elif request.method == 'POST':
+        print(request.POST)
+        formdata = dict(request.POST.copy())
+        # Here, we need to insert to 1 table based on the submitted data: course
+        try:
+            # Insert into course table
+            courseInsert = tables.course.insert(formdata.get('course_code')[0],formdata.get('course_name')[0],
+                                                result['department']['dept_id'])
+            if courseInsert['error']:
+                print('Error in inserting course details ' + courseInsert['message'])
+                raise Exception('Error in inserting employee details '+courseInsert['message'])
+
+            submissionresult = {'error': False, 'message': 'DONE: Successfully registered the course with course code: {}'.format(formdata.get('course_code')[0])}
+
+        except Exception as e:
+             submissionresult = {'error': True, 'message': 'REGISTRATION ERROR: '+ str(e)}
+
+        return render(request, 'departmentapp/addcourse.html', {'result': result, 'submissionresult': submissionresult})
+
+
+def test(request):
+    if request.method == 'POST':
+        print(request.FILES)
+        staff_photo = request.FILES['photo_url']
+        photo_filename = 'user_{}{}'.format(str(1123), os.path.splitext(str(staff_photo))[1])
+        photo_url = os.path.join(settings.MEDIA_ROOT, photo_filename)
+        print(photo_url)
+        with open(photo_url, 'wb+') as destination:
+            for chunk in staff_photo.chunks():
+                destination.write(chunk)
+        print('Finished creating the image')
+    return render(request,'departmentapp/test.html')

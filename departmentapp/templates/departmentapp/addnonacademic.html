@@ -1,0 +1,103 @@
+{% extends 'departmentapp/base.html' %}
+{% load static %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
+{% endblock %}
+
+{% block content %}
+    {% if not result.error %}
+    <div class="row">
+         <div class="page-header col-lg-12">
+             <h3>Add Non-Academic Staff</h3>
+         </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-12">
+            {% if submissionresult %}
+                <div class="row">
+                    <div class="alert {% if submissionresult.error %}alert-danger{% else %}alert-success{% endif %}">
+                        {{ submissionresult.message }}
+                    </div>
+                    <hr>
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <form enctype="multipart/form-data" id="addNonAcademicForm" role="form" method="post" action="{% url 'departmentapp:add_nonacademic' result.department.dept_code %}">
+                    {% csrf_token %}
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="photo_url">Upload Profile Photo </label>
+                            <img src="{% static 'images/profile.png' %}" class="profilepicture" width="100%">
+                            <input type="file" name="photo_url" id="photo_url" accept="image/*" >
+                            <span class="small text-muted"> *Providing a profile photo is optional</span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <strong class="text-info">Fill up this Information</strong>
+                        <hr>
+                        <div class="form-group">
+                            <label for="staff_id">Staff ID </label>
+                            <input type="number" name="staff_id" required pattern="/d{4}" id="staff_id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_fname">First Name </label>
+                            <input type="text" name="staff_fname" required pattern="[A-Za-z]+" id="staff_fname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_mname">Middle Name </label>
+                            <input type="text" name="staff_mname" pattern="[A-Za-z]+" id="staff_mname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_lname">Last Name </label>
+                            <input type="text" name="staff_lname" required pattern="[A-Za-z]+" id="staff_lname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email </label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="home_contact">Home Contact </label>
+                            <input type="number" name="home_contact" required pattern="/d{7}" id="home_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_contact">Mobile Contact </label>
+                            <input type="number" name="mobile_contact" required pattern="/d{10}" id="mobile_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" class="form-control" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="post_id">Post</label>
+                            <select name="post_id" id = "post_id" class="form-control">
+                                {% for post in result.postlist %}
+                                    <option value="{{ post.post_id }}" {% if forloop.first %} selected {% endif %}>{{ post.post_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <input type="submit" value="Submit Form" class="form-submit btn btn-primary">
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h3>INTERNAL SERVER ERROR IN DISPLAYING FORM</h3>
+            <p>{{ result.message }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/imagePreviewer.js' %}"></script>
+{% endblock %}

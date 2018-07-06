@@ -1,0 +1,17 @@
+{% extends 'departmentapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <form action="{% url 'departmentapp:test' %}" method="post" enctype="multipart/form-data" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="photo_url">Upload Profile Photo </label>
+                <img src="{% static 'employee_9777.jpg' %}" class="profilepicture">
+                <input type="file" name="photo_url" id="photo_url" accept="image/*" >
+                <span class="small text-muted"> *Providing a profile photo is optional</span>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
