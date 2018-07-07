@@ -24,9 +24,34 @@
             <a href="{% url 'departmentapp:dashboard' result.department.dept_code %}" class="btn btn-block btn-primary">
                 <span class="glyphicon glyphicon-pencil"></span> Edit Details
             </a>
-            <a href="{% url 'departmentapp:dashboard' result.department.dept_code %}" class="btn btn-block btn-danger">
+            <button class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteStaffModal">
                 <span class="fa fa-edit"></span> Delete Staff
-            </a>
+            </button>
+
+            <div class="modal" id="deleteStaffModal" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title">
+                                <h3><span id="deletionTitle"> Are you sure you want to delete this staff?</span>
+                                    <a id="modalCloseBtn" class="close" href="{% url 'departmentapp:nonacademic_profile' result.department.dept_code result.staff.staff_id %} ">&times</a></h3>
+                            </div>
+
+                        </div>
+                        <div class="modal-body" id="deleteStaffBody">
+                            <p>
+                                Deleting the record of this staff will completely erase every records associated with it. Proceed with caution!
+                            </p>
+                            <button class="btn btn-danger" id="delete-staff" data-href="{% url 'departmentapp:delete_employee' result.department.dept_code result.staff.staff_id %}">
+                                Proceed
+                            </button>
+                            <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-8">
@@ -77,4 +102,20 @@
 {% endblock content %}
 
 {% block extrajs %}
+    <script>
+        var deleteBtn = document.querySelector('#delete-staff');
+        var deleteBody = document.querySelector('#deleteStaffBody');
+        var modalTitle = document.querySelector('#deletionTitle');
+        var modalCloseBtn = document.querySelector('#modalCloseBtn');
+        deleteBtn.addEventListener('click',function (event) {
+            var req = new XMLHttpRequest();
+            req.open('GET',deleteBtn.getAttribute('data-href'),true);
+            req.addEventListener('load',function (ev) {
+                deleteBody.innerHTML = this.responseText;
+                modalTitle.textContent = 'Deletion Details';
+                modalCloseBtn.setAttribute('href',"{% url 'departmentapp:nonacademic' result.department.dept_code %}");
+            });
+            req.send();
+        });
+    </script>
 {% endblock %}

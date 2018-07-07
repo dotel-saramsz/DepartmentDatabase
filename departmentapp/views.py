@@ -468,7 +468,14 @@ def add_instruct(request,dept_code,course_code):
         )}
     except Exception as e:
         result['submission'] = {'error': True, 'message': str(e)}
-
-
     return render(request, 'departmentapp/addinstructform.html', {'result': result})
 
+def delete_employee(request,dept_code,staff_id):
+    deleteResult = tables.delete('employee','staff_id = {}'.format(staff_id))
+    return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})
+
+def remove_instructor(request,dept_code,course_code):
+    staff_id = request.META['HTTP_STAFFID']
+    print('To be deleted from instructs: {},{}'.format(staff_id,course_code))
+    deleteResult = tables.delete('instructs',"staff_id = {} AND course_code = '{}'".format(staff_id,course_code))
+    return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})

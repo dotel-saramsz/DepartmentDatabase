@@ -16,5 +16,7 @@ urlpatterns = [
     path('<dept_code>/course/add', views.add_course, name='add_course'),
     path('<dept_code>/course/<course_code>', views.course_profile, name='course_profile'),
     path('<dept_code>/ajax/addinstruct/<course_code>', views.add_instruct, name='add_instruct'),
+    path('<dept_code>/ajax/delete/<staff_id>', views.delete_employee, name='delete_employee'),
+    path('<dept_code>/ajax/<course_code>/removeinstructor', views.remove_instructor, name='remove_instructor'),
     path('test', views.test, name='test'),
 ]

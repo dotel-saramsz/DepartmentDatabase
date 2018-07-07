@@ -20,8 +20,18 @@ def insert(table_name,field_names,param_tuple):
 def update():
     pass
 
-def delete():
-    pass
+def delete(table_name,condition):
+    # Creation of DELETE query
+    with connection.cursor() as cursor:
+        query = '''DELETE FROM {} WHERE {}'''.format(table_name,condition)
+        print(query)
+        try:
+            cursor.execute(query)
+            transaction.commit()
+            return {'error': False, 'message': 'Successfully deleted matching record(s) from the table {}'.format(table_name)}
+        except Exception as e:
+            transaction.rollback()
+            return {'error': True, 'message': "Couldn't perform the deletion operation in {}. Details:- {}".format(table_name,str(e))}
 
 def get(table_name,column_names,condition):
     query = '''SELECT {} FROM {} WHERE {};'''.format(column_names,table_name,condition)

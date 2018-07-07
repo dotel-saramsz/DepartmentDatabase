@@ -62,7 +62,7 @@
                                 <td>{{ staff.staff_fname }} {{ staff.staff_mname }} {{ staff.staff_lname }}</td>
                                 <td>{{ staff.semester }}</td>
                                 <td class="text-center">
-                                    <button class="staff-removal btn btn-danger" data-staff="{{ staff.staff_id }}" data-course="{{ result.course.course_code }}">
+                                    <button class="staff-removal btn btn-sm btn-danger" data-staff="{{ staff.staff_id }}">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </td>
@@ -70,6 +70,30 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <div class="modal" id="removeInstModal" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title">
+                                    <h3><span id="deletionTitle"> Are you sure you want to remove this instructor?</span>
+                                        <a id="modalCloseBtn" class="close" href="{% url 'departmentapp:course_profile' result.department.dept_code result.course.course_code %} ">&times</a></h3>
+                                </div>
+
+                            </div>
+                            <div class="modal-body" id="removeInstBody">
+                                <p>
+                                    Removing this instructor means he/she will no longer be assigned to teach the course. Proceed with caution!
+                                </p>
+                                <button class="btn btn-danger" id="remove-instructor" >
+                                    Proceed
+                                </button>
+                                <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% else %}
                     <div class="row alert alert-info">
                         No staff has been assigned to teach this course!
@@ -119,6 +143,11 @@
     <script>
         var refreshEvent = new Event('refresh');
         var instructBody = document.querySelector('#assignInstructorBody');
+        var modalToggleBtns = document.querySelectorAll('.staff-removal');
+        var deleteBtn = document.querySelector('#remove-instructor');
+        var deleteBody = document.querySelector('#removeInstBody');
+        var modalTitle = document.querySelector('#deletionTitle');
+        var selectedStaffID = null;
 
         instructBody.addEventListener('refresh',function (ev) {
             var instructForm = document.querySelector('#assignInstructorForm');
@@ -137,6 +166,28 @@
             });
         });
 
+        modalToggleBtns.forEach(function (modalToggleBtn) {
+            modalToggleBtn.addEventListener('click',function (e) {
+                selectedStaffID = this.getAttribute('data-staff');
+                console.log('Selected staff ID: '+selectedStaffID);
+                $('#removeInstModal').modal();
+            })
+        });
+
+        if (deleteBtn != null){     // When there are no remove buttons due to no current teaching staff
+            deleteBtn.addEventListener('click',function (event) {
+                var req = new XMLHttpRequest();
+                req.open('GET',"{% url 'departmentapp:remove_instructor' result.department.dept_code result.course.course_code %}",true);
+                req.setRequestHeader('staffID',selectedStaffID);
+                req.addEventListener('load',function (ev) {
+                    deleteBody.innerHTML = this.responseText;
+                    modalTitle.textContent = 'Deletion Details';
+                });
+                req.send();
+            });
+        }
+
         instructBody.dispatchEvent(refreshEvent);
+
     </script>
 {% endblock %}

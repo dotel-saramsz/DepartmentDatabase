@@ -1,0 +1,9 @@
+<div class="row">
+    {% if result.error %}
+        <p class="alert alert-danger">
+    {% else %}
+        <p class="alert alert-success">
+    {% endif %}
+            {{ result.message }}
+        </p>
+</div>
