@@ -9,29 +9,31 @@
     {% if not result.error %}
     <div class="row">
          <div class="page-header col-lg-12">
-             <h3>Add Academic Staff</h3>
+             <h3>Edit Academic Staff Profile</h3>
          </div>
     </div>
     <div class="row">
 
         <div class="col-lg-12">
-            {% if submissionresult %}
+            {% if updateError %}
                 <div class="row">
-                    <div class="alert {% if submissionresult.error %}alert-danger{% else %}alert-success{% endif %}">
-                        {{ submissionresult.message }}
+                    <div class="alert alert-danger">
+                        <h4>Please fill a valid form!</h4>
+                        <p>{{ updateError.message }}</p>
                     </div>
                     <hr>
                 </div>
             {% endif %}
 
             <div class="row">
-                <form enctype="multipart/form-data" id="addAcademicForm" role="form" method="post" action="{% url 'departmentapp:add_academic' result.department.dept_code %}">
+                <form enctype="multipart/form-data" id="updateAcademicForm" role="form" method="post" action="{% url 'departmentapp:edit_academic' result.department.dept_code result.initial_staffdetails.staff_id %}">
                     {% csrf_token %}
 
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label for="photo_url">Upload Profile Photo </label>
-                            <img src="{% static 'images/profile.png' %}" class="profilepicture" width="100%">
+                            <img src="{% if result.initial_staffdetails.photo_url %} {% static result.initial_staffdetails.photo_url %}
+                              {% else %}{% static 'user.png' %}{% endif %}" class="profilepicture" width="100%">
                             <input type="file" name="photo_url" id="photo_url" accept="image/*" >
                             <span class="small text-muted"> *Providing a profile photo is optional</span>
                         </div>
@@ -131,7 +133,7 @@
                         <div class="form-group">
                             <label for="post_id">Post</label>
                             <select name="post_id" id = "post_id" class="form-control">
-                                <option value="" selected></option>
+                                <option value=""></option>
                                 {% for post in result.postlist %}
                                     <option value="{{ post.post_id }}">{{ post.post_name }}</option>
                                 {% endfor %}
@@ -147,7 +149,7 @@
                         <div class="row">
                             {% for course in result.courselist %}
                                 <div class="col-md-4">
-                                    <input type="checkbox" name="course_code" value="{{ course.course_code }}" > {{ course.course_name }}
+                                    <input type="checkbox" class="canteach" name="course_code" value="{{ course.course_code }}" > {{ course.course_name }}
                                 </div>
                             {% endfor %}
                         </div>
@@ -170,4 +172,75 @@
 
 {% block extrajs %}
     <script src="{% static 'js/imagePreviewer.js' %}"></script>
+    <script>
+        var None = null;
+        var ini_staff_id = {{ result.initial_staffdetails.staff_id }};
+        var ini_staff_fname = '{{ result.initial_staffdetails.staff_fname }}';
+        var ini_staff_mname = '{{ result.initial_staffdetails.staff_mname }}';
+        var ini_staff_lname = '{{ result.initial_staffdetails.staff_lname }}';
+        var ini_email = '{{ result.initial_staffdetails.email }}';
+        var ini_home_contact = {{ result.initial_staffdetails.home_contact }};
+        var ini_mobile_contact = {{ result.initial_staffdetails.mobile_contact }};
+        var ini_address = '{{ result.initial_staffdetails.address }}';
+        var ini_designation = '{{ result.initial_staffdetails.designation }}';
+        var ini_salutation = '{{ result.initial_staffdetails.salutation }}';
+        var ini_service_type = '{{ result.initial_staffdetails.service_type }}';
+        var ini_contract_type = '{{ result.initial_staffdetails.contract_type }}';
+        var ini_qualification = '{{ result.initial_staffdetails.qualification }}';
+        var ini_post_id = '{{ result.initial_staffdetails.post_id }}';
+        var ini_photo_url = '{{ result.initial_staffdetails.photo_url }}';
+        var ini_canteachlist = {{ result.initial_canteach|safe }};
+
+        var form_staff_id = document.querySelector('input#staff_id');
+        var form_staff_fname = document.querySelector('input#staff_fname');
+        var form_staff_mname = document.querySelector('input#staff_mname');
+        var form_staff_lname = document.querySelector('input#staff_lname');
+        var form_email = document.querySelector('input#email');
+        var form_home_contact = document.querySelector('input#home_contact');
+        var form_mobile_contact = document.querySelector('input#mobile_contact');
+        var form_address = document.querySelector('input#address');
+        var form_designation = document.querySelector('select#designation');
+        var form_salutation = document.querySelector('select#salutation');
+        var form_service_type = document.querySelector('select#service_type');
+        var form_contract_type = document.querySelector('select#contract_type');
+        var form_qualification = document.querySelector('select#qualification');
+        var form_post_id = document.querySelector('select#post_id');
+        var form_canteachboxes = document.querySelectorAll('input.canteach');
+        var form_photo_url = document.querySelector('input#photo_url');
+
+        //Setting the initial values according to the staff:
+
+        form_staff_id.setAttribute('value',ini_staff_id);
+        form_staff_fname.setAttribute('value',ini_staff_fname);
+        form_staff_mname.setAttribute('value',ini_staff_mname);
+        form_staff_lname.setAttribute('value',ini_staff_lname);
+        form_email.setAttribute('value',ini_email);
+        form_home_contact.setAttribute('value',ini_home_contact);
+        form_mobile_contact.setAttribute('value',ini_mobile_contact);
+        form_address.setAttribute('value',ini_address);
+
+        function initialize(selectElement,initvalue) {
+            selectElement.childNodes.forEach(function (option) {
+                if(option.tagName === 'OPTION') {
+                    if(option.getAttribute('value') === initvalue) {
+                        option.setAttribute('selected','selected');
+                    }
+                }
+            });
+        }
+
+        initialize(form_designation,ini_designation);
+        initialize(form_salutation,ini_salutation);
+        initialize(form_service_type,ini_service_type);
+        initialize(form_contract_type,ini_contract_type);
+        initialize(form_qualification,ini_qualification);
+        initialize(form_post_id,ini_post_id);
+
+        form_canteachboxes.forEach(function (checkbox) {
+            if(ini_canteachlist.includes(checkbox.getAttribute('value'))) {
+                checkbox.setAttribute('checked','checked');
+            }
+        });
+
+    </script>
 {% endblock %}

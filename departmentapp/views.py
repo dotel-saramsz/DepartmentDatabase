@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import connection,transaction
 from django.conf import settings
 from django.utils.datastructures import MultiValueDictKeyError
@@ -42,7 +42,7 @@ def dashboard(request,dept_code):
             result['nonacademic_count'] = nonacademic_count['value']
 
             #   To get the HOD details in a dictionary field 'hod'
-            hod_details = tables.get(tables.join('employee','academic'),'salutation,staff_fname,staff_lname,email,mobile_contact,photo_url',
+            hod_details = tables.get(tables.join('employee','academic'),'salutation,staff_id,staff_fname,staff_lname,email,mobile_contact,photo_url',
                                      condition='department_id = {} and post_id = {}'.format(result['department']['dept_id'],1))
             if(hod_details['error'] or hod_details['rows'] == [] ):
                 raise Exception('HOD Details cannot be retrieved')
@@ -50,7 +50,7 @@ def dashboard(request,dept_code):
 
             #   To get the Deputy HOD details in a dictionary field 'dhod'
             dhod_details = tables.get(tables.join('employee', 'academic'),
-                                     'salutation,staff_fname,staff_lname,email,mobile_contact,photo_url',
+                                     'salutation,staff_id,staff_fname,staff_lname,email,mobile_contact,photo_url',
                                      condition='department_id = {} and post_id = {}'.format(
                                          result['department']['dept_id'], 2))
             if (dhod_details['error'] or dhod_details['rows'] == []):
@@ -193,9 +193,9 @@ def add_academic(request,dept_code):
 
             # Insert into employee table
             employeeInsert = tables.employee.insert(tables.nullresolver(formdata.get('staff_id')[0],True),
-                                                    formdata.get('staff_fname')[0],
+                                                    tables.nullresolver(formdata.get('staff_fname')[0]),
                                                     formdata.get('staff_mname')[0],
-                                                    formdata.get('staff_lname')[0],
+                                                    tables.nullresolver(formdata.get('staff_lname')[0]),
                                                     photo_url,
                                                     tables.nullresolver(formdata.get('email')[0]),
                                                     tables.nullresolver(formdata.get('home_contact')[0]),
@@ -216,7 +216,7 @@ def add_academic(request,dept_code):
                 print('Error in inserting academic details ' + academicInsert['message'])
                 raise Exception('Error in inserting academic details ' + academicInsert['message'])
             # Insert into canteach table
-            for eachcourse in formdata.get('course_id'):
+            for eachcourse in formdata.get('course_code'):
                 canteachInsert = tables.canteach.insert(tables.nullresolver(formdata.get('staff_id')[0],True),eachcourse)
                 if canteachInsert['error']:
                     print('Error in inserting course details ' + canteachInsert['message'])
@@ -273,9 +273,9 @@ def add_nonacademic(request,dept_code):
 
             # Insert into employee table
             employeeInsert = tables.employee.insert(tables.nullresolver(formdata.get('staff_id')[0], True),
-                                                    formdata.get('staff_fname')[0],
+                                                    tables.nullresolver(formdata.get('staff_fname')[0]),
                                                     formdata.get('staff_mname')[0],
-                                                    formdata.get('staff_lname')[0],
+                                                    tables.nullresolver(formdata.get('staff_lname')[0]),
                                                     photo_url,
                                                     tables.nullresolver(formdata.get('email')[0]),
                                                     tables.nullresolver(formdata.get('home_contact')[0]),
@@ -341,16 +341,19 @@ def add_course(request,dept_code):
 
 
 def test(request):
-    if request.method == 'POST':
-        print(request.FILES)
-        staff_photo = request.FILES['photo_url']
-        photo_filename = 'user_{}{}'.format(str(1123), os.path.splitext(str(staff_photo))[1])
-        photo_url = os.path.join(settings.MEDIA_ROOT, photo_filename)
-        print(photo_url)
-        with open(photo_url, 'wb+') as destination:
-            for chunk in staff_photo.chunks():
-                destination.write(chunk)
-        print('Finished creating the image')
+    # employeeInsert = tables.employee.insert(tables.nullresolver(formdata.get('staff_id')[0], True),
+    #                                         tables.nullresolver(formdata.get('staff_fname')[0]),
+    #                                         formdata.get('staff_mname')[0],
+    #                                         tables.nullresolver(formdata.get('staff_lname')[0]),
+    #                                         photo_url,
+    #                                         tables.nullresolver(formdata.get('email')[0]),
+    #                                         tables.nullresolver(formdata.get('home_contact')[0]),
+    #                                         tables.nullresolver(formdata.get('mobile_contact')[0]),
+    #                                         formdata.get('address')[0],
+    #                                         result['department']['dept_id'])
+    getter = tables.get('employee','photo_url','staff_id = 1162');
+    print(getter['rows'])
+
     return render(request,'departmentapp/test.html')
 
 
@@ -479,3 +482,121 @@ def remove_instructor(request,dept_code,course_code):
     print('To be deleted from instructs: {},{}'.format(staff_id,course_code))
     deleteResult = tables.delete('instructs',"staff_id = {} AND course_code = '{}'".format(staff_id,course_code))
     return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})
+
+
+def edit_academic(request,dept_code,staff_id):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the initial staff details before update
+            initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(staff_id))
+            if initial_staffdetails['error']:
+                raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            #   To get the initial canteach course details before update
+            initial_canteach = tables.get(tables.join('canteach', 'course'), '*', 'staff_id = {}'.format(staff_id))
+            if not initial_canteach['error']:
+                result['initial_canteach'] = [ each['course_code'] for each in initial_canteach['rows']]
+
+            #   Data retrieval for the form options ------------------
+            #   To get the available posts' list for form dropdown
+            postlist = tables.academic_post.getall()
+            if postlist['error']:
+                raise Exception('Post List retrieval error')
+            result['postlist'] = postlist['rows']
+
+            #   To get the course catered by the department for the form dropdown
+            courselist = tables.course.get('department_id = {}'.format(result['department']['dept_id']))
+            if courselist['error']:
+                raise Exception('Available Course List retrieval error')
+            result['courselist'] = courselist['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    if request.method == 'GET':
+        return render(request, 'departmentapp/editacademic.html', {'result': result})
+
+    elif request.method == 'POST':
+        formdata = dict(request.POST.copy())
+        # Here, we need to insert to 3 tables based on the submitted data: employee, academic and canteach
+        try:
+            # Resolve the uploaded file first
+            try:
+                staff_photo = request.FILES['photo_url']
+                photo_filename = 'employee_{}{}'.format(formdata.get('staff_id')[0],
+                                                        os.path.splitext(str(staff_photo))[1])
+                photo_fullurl = os.path.join(settings.MEDIA_ROOT, photo_filename)
+                photo_url = photo_filename
+                with open(photo_fullurl, 'wb+') as destination:
+                    for chunk in staff_photo.chunks():
+                        destination.write(chunk)
+                print('Finished creating the image')
+            except MultiValueDictKeyError:
+                photo_url = None
+
+            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0],True)
+
+            if photo_url is None and result['initial_staffdetails']['photo_url'] is not None:
+                photo_url = result['initial_staffdetails']['photo_url']
+
+            # Update the employee table
+            employeeUpdate = tables.employee.update(new_staff_id,
+                                                    tables.nullresolver(formdata.get('staff_fname')[0]),
+                                                    formdata.get('staff_mname')[0],
+                                                    tables.nullresolver(formdata.get('staff_lname')[0]),
+                                                    photo_url,
+                                                    tables.nullresolver(formdata.get('email')[0]),
+                                                    tables.nullresolver(formdata.get('home_contact')[0]),
+                                                    tables.nullresolver(formdata.get('mobile_contact')[0]),
+                                                    formdata.get('address')[0],
+                                                    result['department']['dept_id'],
+                                                    'staff_id = {}'.format(staff_id))
+            if employeeUpdate['error']:
+                print('Error in updating employee details ' + employeeUpdate['message'])
+                raise Exception('Error in updating employee details ' + employeeUpdate['message'])
+            #   Re-assignment is done so as to change according to successful update on employee
+            initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            # Update the academic table
+            academicUpdate = tables.academic.update(new_staff_id,
+                                                    formdata.get('salutation')[0],
+                                                    formdata.get('designation')[0], formdata.get('service_type')[0],
+                                                    formdata.get('contract_type')[0], formdata.get('qualification')[0],
+                                                    tables.nullresolver(formdata.get('post_id')[0], True),
+                                                    'staff_id = {}'.format(new_staff_id))
+            if academicUpdate['error']:
+                print('Error in updating academic details ' + academicUpdate['message'])
+                raise Exception('Error in inserting academic details ' + academicUpdate['message'])
+
+            initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            # Update the canteach table
+            #----first delete the initial records in canteach table
+            removeinitial = tables.delete('canteach','staff_id = {}'.format(new_staff_id))
+
+            #----then, add the new entries from form
+            for eachcourse in formdata.get('course_code'):
+                canteachInsert = tables.canteach.insert(new_staff_id,eachcourse)
+                if canteachInsert['error']:
+                    print('Error in inserting course details ' + canteachInsert['message'])
+                    raise Exception('Error in inserting course details ' + canteachInsert['message'])
+
+            return redirect('departmentapp:academic_profile',dept_code=dept_code,staff_id=new_staff_id)
+
+        except Exception as e:
+            updateError = {'error': True, 'message': 'UPDATE ERROR: ' + str(e)}
+
+            return render(request, 'departmentapp/editacademic.html',
+                      {'result': result, 'updateError': updateError})

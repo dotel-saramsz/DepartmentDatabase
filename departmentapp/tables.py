@@ -17,8 +17,22 @@ def insert(table_name,field_names,param_tuple):
             transaction.rollback()
             return {'error': True, 'message':"Error: Couldn't perform the insert operation in {}. {}".format(table_name,str(e))}
 
-def update():
-    pass
+def update(table_name,update_statement,condition):
+    # Creation of UPDATE query
+
+    with connection.cursor() as cursor:
+        query = '''UPDATE {} SET {} WHERE {};'''.format(table_name,update_statement,condition)
+        print(query)
+        try:
+            cursor.execute(query)
+            transaction.commit()
+            return {'error': False,
+                    'message': 'Successfully updated the table {} by statements: {}'.format( table_name,update_statement)}
+        except Exception as e:
+            transaction.rollback()
+            return {'error': True,
+                    'message': "Error: Couldn't perform the update operation in {}. Details:- {}".format(table_name, str(e))}
+
 
 def delete(table_name,condition):
     # Creation of DELETE query
@@ -106,6 +120,22 @@ class employee:
 
         return insert('employee','('+','.join(input_fields)+')',tuple(input_values))
 
+    def update(staff_id,staff_fname,staff_mname,staff_lname,photo_url,email,home_contact,mobile_contact,address,department_id,condition):
+        update_expressions = []
+        arguments = [staff_id,staff_fname,staff_mname,staff_lname,photo_url,email,home_contact,mobile_contact,address,department_id]
+        argdict = dict(zip(employee.field_names,arguments))
+        for field in argdict:
+            if argdict[field] is not None:
+                if isinstance(argdict[field],int):
+                    update_expressions.append('{} = {}'.format(field,argdict[field]))
+                elif isinstance(argdict[field],str):
+                    update_expressions.append("{} = '{}'".format(field,argdict[field]))
+            else:
+                update_expressions.append('{} = NULL'.format(field))
+
+        return update('employee',','.join(update_expressions),condition)
+
+
 
 class academic:
     field_names = ['staff_id','salutation','designation','service_type','contract_type','qualification','post_id']
@@ -122,6 +152,22 @@ class academic:
 
         return insert('academic', '(' + ','.join(input_fields) + ')', tuple(input_values))
 
+    def update(staff_id,salutation,designation,service_type,contract_type,qualification,post_id,condition):
+        update_expressions = []
+        arguments = [staff_id,salutation,designation,service_type,contract_type,qualification,post_id]
+        argdict = dict(zip(academic.field_names, arguments))
+        for field in argdict:
+            if argdict[field] is not None:
+                if isinstance(argdict[field],int):
+                    update_expressions.append('{} = {}'.format(field,argdict[field]))
+                elif isinstance(argdict[field],str):
+                    update_expressions.append("{} = '{}'".format(field,argdict[field]))
+            else:
+                update_expressions.append('{} = NULL'.format(field))
+
+        return update('academic',','.join(update_expressions),condition)
+
+
 
 class nonacademic:
     field_names = ['staff_id','post_id']
@@ -137,6 +183,22 @@ class nonacademic:
                 input_values.append(argdict[field])
 
         return insert('nonacademic', '(' + ','.join(input_fields) + ')', tuple(input_values))
+
+    def update(staff_id,post_id,condition):
+        update_expressions = []
+        arguments = [staff_id,post_id]
+        argdict = dict(zip(nonacademic.field_names, arguments))
+        for field in argdict:
+            if argdict[field] is not None:
+                if isinstance(argdict[field],int):
+                    update_expressions.append('{} = {}'.format(field,argdict[field]))
+                elif isinstance(argdict[field],str):
+                    update_expressions.append("{} = '{}'".format(field,argdict[field]))
+            else:
+                update_expressions.append('{} = NULL'.format(field))
+
+        return update('nonacademic',','.join(update_expressions),condition)
+
 
 
 class academic_post:

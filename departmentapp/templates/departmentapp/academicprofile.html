@@ -21,7 +21,7 @@
              <img class="card-img-top" src="{% if result.staff.photo_url %}{% static result.staff.photo_url %}
                                             {% else %}{% static 'user.png' %}{% endif %}" width="100%">
             <p></p>
-            <a href="{% url 'departmentapp:dashboard' result.department.dept_code %}" class="btn btn-block btn-primary">
+            <a href="{% url 'departmentapp:edit_academic' result.department.dept_code result.staff.staff_id %}" class="btn btn-block btn-primary">
                 <span class="glyphicon glyphicon-pencil"></span> Edit Details
             </a>
             <button class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteStaffModal">
@@ -161,5 +161,6 @@
             });
             req.send();
         });
+
     </script>
 {% endblock %}

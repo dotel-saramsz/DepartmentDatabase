@@ -124,7 +124,7 @@
                         <li class="list-group-item"><strong>Phone No:</strong> {{ result.hod.mobile_contact }}</li>
                       </ul>
                       <div class="card-body">
-                          <a href="#" class="card-link">View Info <span class="fa fa-angle-right"></span> </a>
+                          <a href="{% url 'departmentapp:academic_profile' result.department.dept_code result.hod.staff_id %}" class="card-link">View Info <span class="fa fa-angle-right"></span> </a>
                       </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                             <li class="list-group-item"><strong>Phone No:</strong> {{ dhod.mobile_contact }}</li>
                           </ul>
                           <div class="card-body">
-                              <a href="#" class="card-link">View Info <span class="fa fa-angle-right"></span> </a>
+                              <a href="{% url 'departmentapp:academic_profile' result.department.dept_code dhod.staff_id %}" class="card-link">View Info <span class="fa fa-angle-right"></span> </a>
                           </div>
                         </div>
                     </div>
