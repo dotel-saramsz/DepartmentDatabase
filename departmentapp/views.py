@@ -192,13 +192,14 @@ def add_academic(request,dept_code):
                 photo_url = None
 
             # Insert into employee table
-            employeeInsert = tables.employee.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
+            employeeInsert = tables.employee.insert(tables.nullresolver(formdata.get('staff_id')[0],True),
                                                     formdata.get('staff_fname')[0],
                                                     formdata.get('staff_mname')[0],
                                                     formdata.get('staff_lname')[0],
-                                                    photo_url, formdata.get('email')[0],
-                                                    formdata.get('home_contact')[0],
-                                                    formdata.get('mobile_contact')[0],
+                                                    photo_url,
+                                                    tables.nullresolver(formdata.get('email')[0]),
+                                                    tables.nullresolver(formdata.get('home_contact')[0]),
+                                                    tables.nullresolver(formdata.get('mobile_contact')[0]),
                                                     formdata.get('address')[0],
                                                     result['department']['dept_id'])
 
@@ -207,16 +208,16 @@ def add_academic(request,dept_code):
                 print('Error in inserting employee details ' + employeeInsert['message'])
                 raise Exception('Error in inserting employee details '+employeeInsert['message'])
             # Insert into academic table
-            academicInsert = tables.academic.insert(tables.intnullresolver(formdata.get('staff_id')[0]),formdata.get('salutation')[0],
+            academicInsert = tables.academic.insert(tables.nullresolver(formdata.get('staff_id')[0],True),formdata.get('salutation')[0],
                                                     formdata.get('designation')[0],formdata.get('service_type')[0],
                                                     formdata.get('contract_type')[0],formdata.get('qualification')[0],
-                                                    tables.intnullresolver(formdata.get('post_id')[0]))
+                                                    tables.nullresolver(formdata.get('post_id')[0],True))
             if academicInsert['error']:
                 print('Error in inserting academic details ' + academicInsert['message'])
                 raise Exception('Error in inserting academic details ' + academicInsert['message'])
             # Insert into canteach table
             for eachcourse in formdata.get('course_id'):
-                canteachInsert = tables.canteach.insert(tables.intnullresolver(formdata.get('staff_id')[0]),eachcourse)
+                canteachInsert = tables.canteach.insert(tables.nullresolver(formdata.get('staff_id')[0],True),eachcourse)
                 if canteachInsert['error']:
                     print('Error in inserting course details ' + canteachInsert['message'])
                     raise Exception('Error in inserting course details '+ canteachInsert['message'])
@@ -271,13 +272,14 @@ def add_nonacademic(request,dept_code):
                 photo_url = None
 
             # Insert into employee table
-            employeeInsert = tables.employee.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
+            employeeInsert = tables.employee.insert(tables.nullresolver(formdata.get('staff_id')[0], True),
                                                     formdata.get('staff_fname')[0],
                                                     formdata.get('staff_mname')[0],
                                                     formdata.get('staff_lname')[0],
-                                                    photo_url, formdata.get('email')[0],
-                                                    formdata.get('home_contact')[0],
-                                                    formdata.get('mobile_contact')[0],
+                                                    photo_url,
+                                                    tables.nullresolver(formdata.get('email')[0]),
+                                                    tables.nullresolver(formdata.get('home_contact')[0]),
+                                                    tables.nullresolver(formdata.get('mobile_contact')[0]),
                                                     formdata.get('address')[0],
                                                     result['department']['dept_id'])
 
@@ -285,8 +287,8 @@ def add_nonacademic(request,dept_code):
                 print('Error in inserting employee details ' + employeeInsert['message'])
                 raise Exception('Error in inserting employee details '+employeeInsert['message'])
             # Insert into nonacademic table
-            nonacademicInsert = tables.nonacademic.insert(tables.intnullresolver(formdata.get('staff_id')[0]),
-                                                          tables.intnullresolver(formdata.get('post_id')[0]))
+            nonacademicInsert = tables.nonacademic.insert(tables.nullresolver(formdata.get('staff_id')[0],True),
+                                                          tables.nullresolver(formdata.get('post_id')[0],True))
             if nonacademicInsert['error']:
                 print('Error in inserting academic details ' + nonacademicInsert['message'])
                 raise Exception('Error in inserting non-academic details ' + nonacademicInsert['message'])
@@ -376,7 +378,6 @@ def academic_profile(request,dept_code,staff_id):
             if not instructs['error']:
                 result['instructs'] = instructs['rows']
 
-
         except IndexError as e:
             result = {'error': True, 'message': 'Invalid department or staff info'}
 
@@ -395,6 +396,47 @@ def nonacademic_profile(request, dept_code, staff_id):
             #   To get the department details
             result = {'error': False, 'department': result['rows'][0]}
 
+            #   To get the staff details, we use the view in the db, nonacademicprofile
+            staff_details = tables.get('nonacademicprofile', '*', 'staff_id = {}'.format(staff_id))
+            if staff_details['error']:
+                raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
+            result['staff'] = staff_details['rows'][0]
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'Invalid department or staff info'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/nonacademicprofile.html', {'result': result})
+
+
+def course_profile(request, dept_code, course_code):
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        # try catch block check if empty record is returned through indexing operation
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the course details
+            course_info = tables.course.get("course_code = '{}'".format(course_code))
+            if course_info['error']:
+                raise Exception('Course Details Retrieval Error')
+            result['course'] = course_info['rows'][0]
+
+            #   To get the list of academic staffs teaching this course
+            current_stafflist = tables.get(tables.join('instructs','employee'),'*',"course_code = '{}'".format(course_code))
+            if not current_stafflist['error']:
+                result['current_stafflist'] = current_stafflist['rows']
+
+            #   To get the list of academic staffs capable of teaching this course
+            capable_stafflist = tables.get(tables.join('canteach', 'employee'), '*',
+                                           "course_code = '{}'".format(course_code))
+            if not capable_stafflist['error']:
+                result['capable_stafflist'] = capable_stafflist['rows']
+
         except IndexError as e:
             result = {'error': True, 'message': 'No such department is enlisted in the database'}
 
@@ -402,4 +444,31 @@ def nonacademic_profile(request, dept_code, staff_id):
             result = {'error': True, 'department': result['department'],
                       'message': 'There was an error in querying the database: {}'.format(str(e))}
 
-    return render(request, 'departmentapp/staffprofile.html', {'result': result})
+    return render(request, 'departmentapp/courseprofile.html', {'result': result})
+
+
+def add_instruct(request,dept_code,course_code):
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    result = {'error': False, 'department': result['rows'][0]}
+    course_info = tables.course.get("course_code = '{}'".format(course_code))
+    result['course'] = course_info['rows'][0]
+    capable_stafflist = tables.get(tables.join('canteach', 'employee'), '*',
+                                   "course_code = '{}'".format(course_code))
+    result['capable_stafflist'] = capable_stafflist['rows']
+
+    formdata = dict(request.POST.copy())
+
+    try:
+        insertResult = tables.instructs.insert(tables.nullresolver(formdata.get('staff_id')[0],True),course_code,
+                                formdata.get('semester')[0])
+        if insertResult['error']:
+            raise Exception('Invalid from fillup, Please refill the form. Details: '+insertResult['message'])
+        result['submission'] = {'error': False, 'message': 'Successfully assigned staff: ID-{}, as the instructor for {}'.format(
+            formdata.get('staff_id')[0],course_code
+        )}
+    except Exception as e:
+        result['submission'] = {'error': True, 'message': str(e)}
+
+
+    return render(request, 'departmentapp/addinstructform.html', {'result': result})
+

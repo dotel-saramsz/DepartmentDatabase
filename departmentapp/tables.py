@@ -59,11 +59,13 @@ def join(table1,table2,type='natural',on=None):
         joinstr += 'on {}'.format(on)
     return joinstr
 
-def intnullresolver(input_value):
+def nullresolver(input_value,isinteger=False):
     if input_value == '':
         return None
-    else:
+    if isinteger:
         return int(input_value)
+    else:
+        return input_value
 
 class department:
 
@@ -88,7 +90,7 @@ class employee:
         argdict = dict(zip(employee.field_names,arguments))
         input_values = []
         for field in argdict:
-            if argdict[field] is not None and argdict[field] != '':
+            if argdict[field] is not None:
                 input_fields.append(field)
                 input_values.append(argdict[field])
 
@@ -197,7 +199,7 @@ class instructs:
         argdict = dict(zip(instructs.field_names, arguments))
         input_values = []
         for field in argdict:
-            if argdict[field] is not None:
+            if argdict[field] is not None and argdict[field] != '':
                 input_fields.append(field)
                 input_values.append(argdict[field])
 
@@ -213,7 +215,7 @@ class canteach:
         argdict = dict(zip(canteach.field_names, arguments))
         input_values = []
         for field in argdict:
-            if argdict[field] is not None:
+            if argdict[field] is not None and argdict[field] != '':
                 input_fields.append(field)
                 input_values.append(argdict[field])
 

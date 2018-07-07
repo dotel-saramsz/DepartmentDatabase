@@ -13,7 +13,7 @@
     {% if not result.error %}
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header text-capitalize">Academic Staff Profile</h1>
+            <h1 class="page-header text-capitalize">Non-Academic Staff Profile</h1>
         </div>
     </div>
     <div class="row" style="margin:auto;">
@@ -57,10 +57,6 @@
                     <h4 class="card-text">{{ result.staff.address }}</h4>
                 </li>
                 <li class="list-group-item">
-                    <p class="card-title text-info">Designation</p>
-                    <h4 class="card-text">{{ result.staff.designation }}</h4>
-                </li>
-                <li class="list-group-item">
                     <p class="card-title text-info">Post</p>
                     {% if result.staff.post_name %}
                         <h4 class="card-text">{{ result.staff.post_name }}</h4>
@@ -68,46 +64,7 @@
                         <h4 class="card-text"><span class="text-muted">No posts assigned</span> </h4>
                     {% endif %}
                 </li>
-                <li class="list-group-item">
-                    <p class="card-title text-info">Service Type</p>
-                    <h4 class="card-text">{{ result.staff.service_type }}</h4>
-                </li>
-                <li class="list-group-item">
-                    <p class="card-title text-info">Contract Type</p>
-                    <h4 class="card-text">{{ result.staff.contract_type }}</h4>
-                </li>
-                <li class="list-group-item">
-                    <p class="card-title text-info">Qualification</p>
-                    <h4 class="card-text">{{ result.staff.qualification }}</h4>
-                </li>
               </ul>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <h4 class="card-title"><strong>Courses the staff can teach:</strong></h4>
-                    <ul class="list-group list-group-flush card-body">
-                        {% for course in result.canteach %}
-                            <li class="list-group-item">
-                                <p class="card-text">{{ course.course_name }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <h4 class="card-title"><strong>Currently taught courses:</strong></h4>
-                    <ul class="list-group list-group-flush card-body">
-                        {% for course in result.instructs %}
-                            <li class="list-group-item">
-                                <p class="card-text">{{ course.course_name }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
             </div>
         </div>
      </div>

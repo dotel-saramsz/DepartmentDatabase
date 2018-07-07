@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                         {% for course in result.course_list %}
-                            <tr class="course-row" data-href="{% url 'departmentapp:dashboard' result.department.dept_code %}">
+                            <tr class="course-row" data-href="{% url 'departmentapp:course_profile' result.department.dept_code course.course_code %}">
                                 <td>{{ course.course_code }}</td>
                                 <td>{{ course.course_name }}</td>
                             </tr>
@@ -74,8 +74,8 @@
 
 {% block extrajs %}
     <script>
-        var staffrows = document.querySelectorAll('.course-row');
-        staffrows.forEach(function (row){
+        var courserows = document.querySelectorAll('.course-row');
+        courserows.forEach(function (row){
             row.addEventListener('mouseenter',function (event) {
                this.style.backgroundColor = '#34373a';
                this.style.color = 'white';

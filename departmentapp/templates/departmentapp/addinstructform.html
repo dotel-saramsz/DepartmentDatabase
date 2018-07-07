@@ -1,0 +1,44 @@
+{% if result.submission %}
+    <div class="row">
+        {% if result.submission.error %}
+            <p class="alert alert-danger">{{ result.submission.message }}</p>
+        {% else %}
+            <p class="alert alert-success">{{ result.submission.message }}</p>
+        {% endif %}
+    </div>
+    <hr>
+{% endif %}
+
+<form id="assignInstructorForm" method="post" role="form" data-submit="{% url 'departmentapp:add_instruct' result.department.dept_code result.course.course_code %}">
+    {% csrf_token %}
+    <p class="text-info text-muted">
+        Choose a new instructor from the list of instructors that can teach this course
+    </p>
+    <div class="form-group">
+        <label for="staff">Instructor</label>
+        <select name="staff_id" id = "staff" class="form-control">
+            {% for instructor in result.capable_stafflist %}
+                <option value="{{ instructor.staff_id }}">{{ instructor.staff_fname }} {{ instructor.staff_mname }} {{ instructor.staff_lname }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="semester">Assigned Semester</label>
+        <select name="semester" id = "semester" class="form-control">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="OK">
+        <a class="btn btn-danger" href="{% url 'departmentapp:course_profile' result.department.dept_code result.course.course_code %} ">Cancel</a>
+    </div>
+</form>
