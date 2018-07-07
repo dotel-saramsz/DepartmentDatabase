@@ -1,0 +1,151 @@
+{% extends 'departmentapp/base.html' %}
+{% load static %}
+
+{% block sidebar %}
+    {% include 'departmentapp/sidebar.html' with dept_code=result.department.dept_code %}
+{% endblock %}
+
+{% block content %}
+    {% if not result.error %}
+    <div class="row">
+         <div class="page-header col-lg-12">
+             <h3>Edit Non-Academic Staff Profile</h3>
+         </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-12">
+            {% if updateError %}
+                <div class="row">
+                    <div class="alert alert-danger">
+                        <h4>Please fill a valid form!</h4>
+                        <p>{{ updateError.message }}</p>
+                    </div>
+                    <hr>
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <form enctype="multipart/form-data" id="updateNonAcademicForm" role="form" method="post" action="{% url 'departmentapp:edit_nonacademic' result.department.dept_code result.initial_staffdetails.staff_id %}">
+                    {% csrf_token %}
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="photo_url">Upload Profile Photo </label>
+                            <img src="{% if result.initial_staffdetails.photo_url %} {% static result.initial_staffdetails.photo_url %}
+                              {% else %}{% static 'user.png' %}{% endif %}" class="profilepicture" width="100%">
+                            <input type="file" name="photo_url" id="photo_url" accept="image/*" >
+                            <span class="small text-muted"> *Providing a profile photo is optional</span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-8">
+                        <strong class="text-info">Fill up this Information</strong>
+                        <hr>
+                        <div class="form-group">
+                            <label for="staff_id">Staff ID </label>
+                            <input type="number" name="staff_id" required pattern="/d{6}" id="staff_id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_fname">First Name </label>
+                            <input type="text" name="staff_fname" required pattern="[A-Za-z]+" id="staff_fname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_mname">Middle Name </label>
+                            <input type="text" name="staff_mname" pattern="[A-Za-z]+" id="staff_mname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_lname">Last Name </label>
+                            <input type="text" name="staff_lname" required pattern="[A-Za-z]+" id="staff_lname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email </label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="home_contact">Home Contact </label>
+                            <input type="number" name="home_contact" id="home_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_contact">Mobile Contact </label>
+                            <input type="number" name="mobile_contact" id="mobile_contact" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" class="form-control" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="post_id">Post</label>
+                            <select name="post_id" id = "post_id" class="form-control">
+                                {% for post in result.postlist %}
+                                    <option value="{{ post.post_id }}" {% if forloop.first %} selected {% endif %}>{{ post.post_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <input type="submit" value="Submit Form" class="form-submit btn btn-primary">
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <h3>INTERNAL SERVER ERROR IN DISPLAYING FORM</h3>
+            <p>{{ result.message }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block extrajs %}
+    <script src="{% static 'js/imagePreviewer.js' %}"></script>
+    <script>
+        var None = null;
+        var ini_staff_id = {{ result.initial_staffdetails.staff_id }};
+        var ini_staff_fname = '{{ result.initial_staffdetails.staff_fname }}';
+        var ini_staff_mname = '{{ result.initial_staffdetails.staff_mname }}';
+        var ini_staff_lname = '{{ result.initial_staffdetails.staff_lname }}';
+        var ini_email = '{{ result.initial_staffdetails.email }}';
+        var ini_home_contact = {{ result.initial_staffdetails.home_contact }};
+        var ini_mobile_contact = {{ result.initial_staffdetails.mobile_contact }};
+        var ini_address = '{{ result.initial_staffdetails.address }}';
+        var ini_post_id = '{{ result.initial_staffdetails.post_id }}';
+
+        var form_staff_id = document.querySelector('input#staff_id');
+        var form_staff_fname = document.querySelector('input#staff_fname');
+        var form_staff_mname = document.querySelector('input#staff_mname');
+        var form_staff_lname = document.querySelector('input#staff_lname');
+        var form_email = document.querySelector('input#email');
+        var form_home_contact = document.querySelector('input#home_contact');
+        var form_mobile_contact = document.querySelector('input#mobile_contact');
+        var form_address = document.querySelector('input#address');
+        var form_post_id = document.querySelector('select#post_id');
+
+        //Setting the initial values according to the staff:
+
+        form_staff_id.setAttribute('value',ini_staff_id);
+        form_staff_fname.setAttribute('value',ini_staff_fname);
+        form_staff_mname.setAttribute('value',ini_staff_mname);
+        form_staff_lname.setAttribute('value',ini_staff_lname);
+        form_email.setAttribute('value',ini_email);
+        form_home_contact.setAttribute('value',ini_home_contact);
+        form_mobile_contact.setAttribute('value',ini_mobile_contact);
+        form_address.setAttribute('value',ini_address);
+
+        function initialize(selectElement,initvalue) {
+            selectElement.childNodes.forEach(function (option) {
+                if(option.tagName === 'OPTION') {
+                    if(option.getAttribute('value') === initvalue) {
+                        option.setAttribute('selected','selected');
+                    }
+                }
+            });
+        }
+
+        initialize(form_post_id,ini_post_id);
+
+    </script>
+{% endblock %}

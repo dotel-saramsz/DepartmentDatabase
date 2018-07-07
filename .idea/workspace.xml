@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b5035b-4964-421b-9f5b-f61d9224fa9f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/tables.py" afterPath="$PROJECT_DIR$/departmentapp/tables.py" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" />
       <change beforePath="$PROJECT_DIR$/departmentapp/urls.py" afterPath="$PROJECT_DIR$/departmentapp/urls.py" />
       <change beforePath="$PROJECT_DIR$/departmentapp/views.py" afterPath="$PROJECT_DIR$/departmentapp/views.py" />
     </list>
@@ -43,54 +40,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1770">
-              <caret line="597" column="24" lean-forward="false" selection-start-line="597" selection-start-column="24" selection-end-line="597" selection-end-column="24" />
+            <state relative-caret-position="200">
+              <caret line="678" column="28" lean-forward="false" selection-start-line="678" selection-start-column="28" selection-end-line="678" selection-end-column="28" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
                 <element signature="e#435#3580#0" expanded="false" />
                 <element signature="e#3619#4844#0" expanded="false" />
                 <element signature="e#4887#6286#0" expanded="false" />
                 <element signature="e#6324#7455#0" expanded="false" />
-                <element signature="e#12682#16778#0" expanded="false" />
                 <element signature="e#16820#18721#0" expanded="false" />
-                <element signature="e#21493#22599#0" expanded="false" />
+                <element signature="e#19829#21431#0" expanded="false" />
                 <element signature="e#22659#24367#0" expanded="false" />
                 <element signature="e#24423#25634#0" expanded="false" />
                 <element signature="e#25689#25850#0" expanded="false" />
                 <element signature="e#25910#26229#0" expanded="false" />
+                <element signature="e#26283#33234#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editacademic.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+      <file leaf-file-name="editnonacademic.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="35" column="59" lean-forward="false" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+            <state relative-caret-position="906">
+              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addacademic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html">
+      <file leaf-file-name="addnonacademic.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="149" column="76" lean-forward="false" selection-start-line="149" selection-start-column="76" selection-end-line="149" selection-end-column="76" />
+            <state relative-caret-position="398">
+              <caret line="64" column="65" lean-forward="true" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editacademic.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="229" column="9" lean-forward="true" selection-start-line="229" selection-start-column="9" selection-end-line="229" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -101,16 +98,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="74">
               <caret line="23" column="108" lean-forward="false" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="143" column="120" lean-forward="false" selection-start-line="143" selection-start-column="120" selection-end-line="143" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -151,16 +138,17 @@
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/deletioninfo.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
-        <option value="$PROJECT_DIR$/departmentapp/urls.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html" />
         <option value="$PROJECT_DIR$/static/js/imagePreviewer.js" />
         <option value="$PROJECT_DIR$/departmentapp/tables.py" />
-        <option value="$PROJECT_DIR$/departmentapp/views.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html" />
+        <option value="$PROJECT_DIR$/departmentapp/urls.py" />
+        <option value="$PROJECT_DIR$/departmentapp/views.py" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" />
       </list>
     </option>
   </component>
@@ -347,22 +335,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="e#675#2039#0#HTML" expanded="false" />
-            <element signature="e#2072#2094#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -407,13 +384,13 @@
             <element signature="e#3619#4844#0" expanded="false" />
             <element signature="e#4887#6286#0" expanded="false" />
             <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#12682#16778#0" expanded="false" />
             <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#21493#22599#0" expanded="false" />
+            <element signature="e#19829#21431#0" expanded="false" />
             <element signature="e#22659#24367#0" expanded="false" />
             <element signature="e#24423#25634#0" expanded="false" />
             <element signature="e#25689#25850#0" expanded="false" />
             <element signature="e#25910#26229#0" expanded="false" />
+            <element signature="e#26283#33234#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -488,13 +465,13 @@
             <element signature="e#3619#4844#0" expanded="false" />
             <element signature="e#4887#6286#0" expanded="false" />
             <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#12682#16778#0" expanded="false" />
             <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#21493#22599#0" expanded="false" />
+            <element signature="e#19829#21431#0" expanded="false" />
             <element signature="e#22659#24367#0" expanded="false" />
             <element signature="e#24423#25634#0" expanded="false" />
             <element signature="e#25689#25850#0" expanded="false" />
             <element signature="e#25910#26229#0" expanded="false" />
+            <element signature="e#26283#33234#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -681,14 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1604">
-          <caret line="115" column="84" lean-forward="false" selection-start-line="115" selection-start-column="84" selection-end-line="115" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/deletioninfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -709,14 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="143" column="120" lean-forward="false" selection-start-line="143" selection-start-column="120" selection-end-line="143" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -733,34 +694,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="68" column="70" lean-forward="false" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="23" column="108" lean-forward="false" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/imagePreviewer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -783,31 +720,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="143" column="120" lean-forward="false" selection-start-line="143" selection-start-column="120" selection-end-line="143" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="23" column="108" lean-forward="false" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" column="98" lean-forward="false" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="229" column="9" lean-forward="true" selection-start-line="229" selection-start-column="9" selection-end-line="229" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="906">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="23" column="111" lean-forward="false" selection-start-line="23" selection-start-column="111" selection-end-line="23" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1770">
-          <caret line="597" column="24" lean-forward="false" selection-start-line="597" selection-start-column="24" selection-end-line="597" selection-end-column="24" />
+        <state relative-caret-position="200">
+          <caret line="678" column="28" lean-forward="false" selection-start-line="678" selection-start-column="28" selection-end-line="678" selection-end-column="28" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
             <element signature="e#435#3580#0" expanded="false" />
             <element signature="e#3619#4844#0" expanded="false" />
             <element signature="e#4887#6286#0" expanded="false" />
             <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#12682#16778#0" expanded="false" />
             <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#21493#22599#0" expanded="false" />
+            <element signature="e#19829#21431#0" expanded="false" />
             <element signature="e#22659#24367#0" expanded="false" />
             <element signature="e#24423#25634#0" expanded="false" />
             <element signature="e#25689#25850#0" expanded="false" />
             <element signature="e#25910#26229#0" expanded="false" />
+            <element signature="e#26283#33234#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="35" column="59" lean-forward="false" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+        <state relative-caret-position="398">
+          <caret line="64" column="65" lean-forward="true" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
           <folding />
         </state>
       </provider>

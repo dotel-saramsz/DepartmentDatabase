@@ -600,3 +600,97 @@ def edit_academic(request,dept_code,staff_id):
 
             return render(request, 'departmentapp/editacademic.html',
                       {'result': result, 'updateError': updateError})
+
+
+def edit_nonacademic(request,dept_code,staff_id):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+
+            #   To get the initial staff details before update
+            initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(staff_id))
+            if initial_staffdetails['error']:
+                raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            #   Data retrieval for the form options ------------------
+            #   To get the available posts' list for form dropdown
+            postlist = tables.nonacademic_post.getall()
+            if postlist['error']:
+                raise Exception('Post List retrieval error')
+            result['postlist'] = postlist['rows']
+
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    if request.method == 'GET':
+        return render(request, 'departmentapp/editnonacademic.html', {'result': result})
+
+    elif request.method == 'POST':
+        formdata = dict(request.POST.copy())
+        # Here, we need to update 2 tables based on the submitted data: employee, nonacademic
+        try:
+            # Resolve the uploaded file first
+            try:
+                staff_photo = request.FILES['photo_url']
+                photo_filename = 'employee_{}{}'.format(formdata.get('staff_id')[0],
+                                                        os.path.splitext(str(staff_photo))[1])
+                photo_fullurl = os.path.join(settings.MEDIA_ROOT, photo_filename)
+                photo_url = photo_filename
+                with open(photo_fullurl, 'wb+') as destination:
+                    for chunk in staff_photo.chunks():
+                        destination.write(chunk)
+                print('Finished creating the image')
+            except MultiValueDictKeyError:
+                photo_url = None
+
+            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0], True)
+
+            if photo_url is None and result['initial_staffdetails']['photo_url'] is not None:
+                photo_url = result['initial_staffdetails']['photo_url']
+
+            # Update the employee table
+            employeeUpdate = tables.employee.update(new_staff_id,
+                                                    tables.nullresolver(formdata.get('staff_fname')[0]),
+                                                    formdata.get('staff_mname')[0],
+                                                    tables.nullresolver(formdata.get('staff_lname')[0]),
+                                                    photo_url,
+                                                    tables.nullresolver(formdata.get('email')[0]),
+                                                    tables.nullresolver(formdata.get('home_contact')[0]),
+                                                    tables.nullresolver(formdata.get('mobile_contact')[0]),
+                                                    formdata.get('address')[0],
+                                                    result['department']['dept_id'],
+                                                    'staff_id = {}'.format(staff_id))
+            if employeeUpdate['error']:
+                print('Error in updating employee details ' + employeeUpdate['message'])
+                raise Exception('Error in updating employee details ' + employeeUpdate['message'])
+            #   Re-assignment is done so as to change according to successful update on employee
+            initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            # Update the nonacademic table
+            nonacademicUpdate = tables.nonacademic.update(new_staff_id,
+                                                    tables.nullresolver(formdata.get('post_id')[0], True),
+                                                    'staff_id = {}'.format(new_staff_id))
+            if nonacademicUpdate['error']:
+                print('Error in updating non-academic staff details ' + nonacademicUpdate['message'])
+                raise Exception('Error in inserting non-academic staff details ' + nonacademicUpdate['message'])
+
+            initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            return redirect('departmentapp:nonacademic_profile', dept_code=dept_code, staff_id=new_staff_id)
+
+        except Exception as e:
+            updateError = {'error': True, 'message': 'UPDATE ERROR: ' + str(e)}
+
+            return render(request, 'departmentapp/editnonacademic.html',
+                          {'result': result, 'updateError': updateError})
