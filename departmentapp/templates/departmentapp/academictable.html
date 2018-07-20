@@ -1,0 +1,32 @@
+{% if result.filtererror %}
+    <div class="alert alert-danger">
+        <h3>ERROR!!!</h3>
+        <p>{{ result.message }}</p>
+    </div>
+
+{% else %}
+    <div id="table-wrapper" class="row">
+        <table width="100%" class="table table-bordered table-hover" id="list-table">
+            <thead>
+                <tr>
+                    <th>Staff ID</th>
+                    <th>Staff Name</th>
+                    <th>E-mail</th>
+                    <th>Phone Number</th>
+                    <th>Designation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for staff in result.staff_list %}
+                    <tr class="staff-row" data-href="{% url 'departmentapp:academic_profile' result.department.dept_code staff.staff_id %}">
+                        <td>{{ staff.staff_id }}</td>
+                        <td>{{ staff.salutation }} {{ staff.staff_fname }} {{ staff.staff_mname }} {{ staff.staff_lname }}</td>
+                        <td>{{ staff.email }}</td>
+                        <td>{{ staff.mobile_contact }}</td>
+                        <td>{{ staff.designation }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

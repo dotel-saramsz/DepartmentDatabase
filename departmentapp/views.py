@@ -76,10 +76,15 @@ def academic(request,dept_code):
 
             #   To get the entire list of academic staffs in that department
             column_names = 'staff_id,salutation,staff_fname,staff_mname,staff_lname,email,mobile_contact,designation'
-            staff_list = tables.get(tables.join('academic','employee'),column_names,'department_id = {}'.format(result['department']['dept_id']))
+            staff_list = tables.get('academicsummary',column_names,'department_id = {}'.format(result['department']['dept_id']))
             if staff_list['error']:
                 raise Exception('Academic Staff retrieval error')
             result['staff_list'] = staff_list['rows']
+
+            #   To get the post list for filtering
+            post_list = tables.academic_post.getall()
+            if not post_list['error']:
+                result['postlist'] = post_list['rows']
 
         except IndexError as e:
             result = {'error': True, 'message': 'No such department is enlisted in the database'}
@@ -89,6 +94,37 @@ def academic(request,dept_code):
                       'message': 'There was an error in querying the database: {}'.format(str(e))}
 
     return render(request, 'departmentapp/academic.html', {'result': result})
+
+
+def filter_academic(request,dept_code):
+    print('AJAX filter request received')
+    formdata = dict(request.POST.copy())
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+            formdata['department_id'] = [result['department']['dept_id']]
+            #   To get the filtered list of academic staffs in that department
+            column_names = 'staff_id,salutation,staff_fname,staff_mname,staff_lname,email,mobile_contact,designation'
+            print('Filter Form Data: {}'.format(formdata))
+            filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
+            filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
+
+            staff_list = tables.filter('academicsummary',filter_columns,filter_values)
+            if staff_list['error']:
+                raise Exception('No academic staffs were found with the specified criterias')
+            result['staff_list'] = staff_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'filtererror': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/academictable.html', {'result': result})
 
 
 def nonacademic(request,dept_code):
@@ -108,6 +144,11 @@ def nonacademic(request,dept_code):
                 raise Exception('Non-Academic Staff retrieval error')
             result['staff_list'] = staff_list['rows']
 
+            #   To get the post list for filtering
+            post_list = tables.nonacademic_post.getall()
+            if not post_list['error']:
+                result['postlist'] = post_list['rows']
+
         except IndexError as e:
             result = {'error': True, 'message': 'No such department is enlisted in the database'}
 
@@ -118,6 +159,36 @@ def nonacademic(request,dept_code):
     return render(request, 'departmentapp/nonacademic.html', {'result': result})
 
 
+def filter_nonacademic(request,dept_code):
+    print('AJAX filter request received')
+    formdata = dict(request.POST.copy())
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+            formdata['department_id'] = [result['department']['dept_id']]
+            #   To get the filtered list of academic staffs in that department
+            print('Filter Form Data: {}'.format(formdata))
+            filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
+            filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
+
+            staff_list = tables.filter('nonacademicsummary',filter_columns,filter_values)
+            if staff_list['error']:
+                raise Exception('No non-academic staffs were found with the specified criterias')
+            result['staff_list'] = staff_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'filtererror': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/nonacademictable.html', {'result': result})
+
+
 def course(request,dept_code):
     result = tables.department.get("dept_code = '{}'".format(dept_code))
     if not result['error']:
@@ -126,7 +197,7 @@ def course(request,dept_code):
             #   To get the department details
             result = {'error': False, 'department': result['rows'][0]}
 
-            #   To get the entire list of academic staffs in that department
+            #   To get the entire list of courses offered by that department
             column_names = 'course_code,course_name'
             course_list = tables.course.get('department_id = {}'.format(result['department']['dept_id']),column_names)
             if course_list['error']:
@@ -141,6 +212,36 @@ def course(request,dept_code):
                       'message': 'There was an error in querying the database: {}'.format(str(e))}
 
     return render(request, 'departmentapp/course.html', {'result': result})
+
+
+def filter_course(request,dept_code):
+    print('AJAX filter request received')
+    formdata = dict(request.POST.copy())
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+
+    if not result['error']:
+        try:
+            #   To get the department details
+            result = {'error': False, 'department': result['rows'][0]}
+            formdata['department_id'] = [result['department']['dept_id']]
+            #   To get the filtered list of courses in that department
+            print('Filter Form Data: {}'.format(formdata))
+            filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
+            filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
+
+            course_list = tables.filter('course',filter_columns,filter_values)
+            if course_list['error']:
+                raise Exception('No course was found with the specified course ID')
+            result['course_list'] = course_list['rows']
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'filtererror': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+    return render(request, 'departmentapp/coursetable.html', {'result': result})
 
 
 def add_academic(request,dept_code):
@@ -463,12 +564,15 @@ def add_instruct(request,dept_code,course_code):
 
     try:
         insertResult = tables.instructs.insert(tables.nullresolver(formdata.get('staff_id')[0],True),course_code,
-                                formdata.get('semester')[0])
+                                formdata.get('semester')[0],formdata.get('program')[0])
         if insertResult['error']:
             raise Exception('Invalid from fillup, Please refill the form. Details: '+insertResult['message'])
-        result['submission'] = {'error': False, 'message': 'Successfully assigned staff: ID-{}, as the instructor for {}'.format(
-            formdata.get('staff_id')[0],course_code
-        )}
+        result['submission'] = {'error': False,
+                                'message': 'Successfully assigned staff: ID-{}, as the instructor for course:{} in {} for semester {}'.format(
+                                formdata.get('staff_id')[0],
+                                course_code,
+                                formdata.get('program')[0],
+                                formdata.get('semester')[0] )}
     except Exception as e:
         result['submission'] = {'error': True, 'message': str(e)}
     return render(request, 'departmentapp/addinstructform.html', {'result': result})
@@ -477,10 +581,19 @@ def delete_employee(request,dept_code,staff_id):
     deleteResult = tables.delete('employee','staff_id = {}'.format(staff_id))
     return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})
 
+
+def delete_course(request,dept_code,course_code):
+    deleteResult = tables.delete('course',"course_code = '{}'".format(course_code))
+    return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})
+
+
 def remove_instructor(request,dept_code,course_code):
     staff_id = request.META['HTTP_STAFFID']
+    staff_semester = request.META['HTTP_STAFFSEMESTER']
+    staff_program = request.META['HTTP_STAFFPROGRAM']
     print('To be deleted from instructs: {},{}'.format(staff_id,course_code))
-    deleteResult = tables.delete('instructs',"staff_id = {} AND course_code = '{}'".format(staff_id,course_code))
+    deleteResult = tables.delete('instructs',"staff_id = {} AND course_code = '{}' AND semester = {} AND program = '{}' ".format(
+        staff_id,course_code,staff_semester,staff_program))
     return render(request, 'departmentapp/deletioninfo.html', {'result': deleteResult})
 
 

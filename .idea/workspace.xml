@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b5035b-4964-421b-9f5b-f61d9224fa9f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academictable.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/coursetable.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademictable.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/static/js/excelExporter.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/tables.py" afterPath="$PROJECT_DIR$/departmentapp/tables.py" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html" />
+      <change beforePath="$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html" afterPath="$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html" />
       <change beforePath="$PROJECT_DIR$/departmentapp/urls.py" afterPath="$PROJECT_DIR$/departmentapp/urls.py" />
       <change beforePath="$PROJECT_DIR$/departmentapp/views.py" afterPath="$PROJECT_DIR$/departmentapp/views.py" />
+      <change beforePath="$PROJECT_DIR$/static/images/profile.png" afterPath="$PROJECT_DIR$/static/images/profile.png" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,84 +31,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tables.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
-              <folding>
-                <marker date="1530997971463" expanded="true" signature="330:343" ph="INSERT INTO missing_value... " />
-                <marker date="1530997971463" expanded="true" signature="330:345" ph="INSERT INTO " />
-                <marker date="1530997971463" expanded="true" signature="970:993" ph="UPDATE missing_value... " />
-                <marker date="1530997971463" expanded="true" signature="976:993" ph="INSERT INTO missing_value... " />
-                <marker date="1530997971463" expanded="true" signature="1659:1680" ph="DELETE FROM missing_value... " />
-                <marker date="1530997971463" expanded="true" signature="1659:1682" ph="DELETE FROM " />
-                <marker date="1530997971463" expanded="true" signature="2204:2228" ph="SELECT missi... missing_value" />
-                <marker date="1530997971463" expanded="true" signature="2204:2230" ph="SELECT {} FR... " />
-                <marker date="1530997971463" expanded="true" signature="2869:2900" ph="SELECT count... missing_value" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="678" column="28" lean-forward="false" selection-start-line="678" selection-start-column="28" selection-end-line="678" selection-end-column="28" />
+            <state relative-caret-position="560">
+              <caret line="243" column="48" lean-forward="false" selection-start-line="243" selection-start-column="48" selection-end-line="243" selection-end-column="48" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
                 <element signature="e#435#3580#0" expanded="false" />
-                <element signature="e#3619#4844#0" expanded="false" />
-                <element signature="e#4887#6286#0" expanded="false" />
-                <element signature="e#6324#7455#0" expanded="false" />
-                <element signature="e#16820#18721#0" expanded="false" />
-                <element signature="e#19829#21431#0" expanded="false" />
-                <element signature="e#22659#24367#0" expanded="false" />
-                <element signature="e#24423#25634#0" expanded="false" />
-                <element signature="e#25689#25850#0" expanded="false" />
-                <element signature="e#25910#26229#0" expanded="false" />
-                <element signature="e#26283#33234#0" expanded="false" />
+                <element signature="e#12369#17505#0" expanded="false" />
+                <element signature="e#17552#21648#0" expanded="false" />
+                <element signature="e#21690#23591#0" expanded="false" />
+                <element signature="e#23617#24642#0" expanded="false" />
+                <element signature="e#26363#27469#0" expanded="false" />
+                <element signature="e#27529#29237#0" expanded="false" />
+                <element signature="e#29293#30758#0" expanded="false" />
+                <element signature="e#30813#30974#0" expanded="false" />
+                <element signature="e#31031#31198#0" expanded="false" />
+                <element signature="e#31259#31764#0" expanded="false" />
+                <element signature="e#38826#44187#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editnonacademic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="906">
-              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="20" column="81" lean-forward="false" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="academic.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="145" column="62" lean-forward="true" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addnonacademic.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
+      <file leaf-file-name="nonacademic.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="64" column="65" lean-forward="true" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
+            <state relative-caret-position="2178">
+              <caret line="121" column="62" lean-forward="false" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editacademic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+      <file leaf-file-name="excelExporter.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/js/excelExporter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="229" column="9" lean-forward="true" selection-start-line="229" selection-start-column="9" selection-end-line="229" selection-end-column="9" />
+            <state relative-caret-position="18">
+              <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="academicprofile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="23" column="108" lean-forward="false" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
+            <state relative-caret-position="828">
+              <caret line="49" column="15" lean-forward="false" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -109,8 +113,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -120,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/departmentdb/urls.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/index.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html" />
         <option value="$PROJECT_DIR$/static/css/sidebar.css" />
@@ -131,24 +134,29 @@
         <option value="$PROJECT_DIR$/static/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/staffprofile.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/teacherprofile.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/deletioninfo.html" />
-        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html" />
         <option value="$PROJECT_DIR$/static/js/imagePreviewer.js" />
-        <option value="$PROJECT_DIR$/departmentapp/tables.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html" />
-        <option value="$PROJECT_DIR$/departmentapp/urls.py" />
-        <option value="$PROJECT_DIR$/departmentapp/views.py" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html" />
         <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html" />
+        <option value="$PROJECT_DIR$/departmentdb/urls.py" />
+        <option value="$PROJECT_DIR$/departmentapp/tables.py" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/coursetable.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html" />
+        <option value="$PROJECT_DIR$/departmentapp/urls.py" />
+        <option value="$PROJECT_DIR$/departmentapp/views.py" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/academictable.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademictable.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html" />
+        <option value="$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html" />
+        <option value="$PROJECT_DIR$/static/js/excelExporter.js" />
       </list>
     </option>
   </component>
@@ -227,6 +235,12 @@
               <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
               <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="departmentdb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="departmentdb" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -242,10 +256,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Minor/minor" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/images" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -301,29 +320,29 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="0" width="1317" height="768" extended-state="6" />
+    <frame x="49" y="24" width="1319" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953683" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="0" y="0" width="279" height="580" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993994" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="0" width="279" height="580" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -335,71 +354,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentdb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="83" column="23" lean-forward="false" selection-start-line="83" selection-start-column="23" selection-end-line="83" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentdb/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding>
-            <element signature="e#636#668#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" lean-forward="false" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-            <element signature="e#435#3580#0" expanded="false" />
-            <element signature="e#3619#4844#0" expanded="false" />
-            <element signature="e#4887#6286#0" expanded="false" />
-            <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#19829#21431#0" expanded="false" />
-            <element signature="e#22659#24367#0" expanded="false" />
-            <element signature="e#24423#25634#0" expanded="false" />
-            <element signature="e#25689#25850#0" expanded="false" />
-            <element signature="e#25910#26229#0" expanded="false" />
-            <element signature="e#26283#33234#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -408,15 +371,15 @@
         <state relative-caret-position="468">
           <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
           <folding>
-            <marker date="1530997971463" expanded="true" signature="330:343" ph="INSERT INTO missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="330:345" ph="INSERT INTO " />
-            <marker date="1530997971463" expanded="true" signature="970:993" ph="UPDATE missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="976:993" ph="INSERT INTO missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="1659:1680" ph="DELETE FROM missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="1659:1682" ph="DELETE FROM " />
-            <marker date="1530997971463" expanded="true" signature="2204:2228" ph="SELECT missi... missing_value" />
-            <marker date="1530997971463" expanded="true" signature="2204:2230" ph="SELECT {} FR... " />
-            <marker date="1530997971463" expanded="true" signature="2869:2900" ph="SELECT count... missing_value" />
+            <marker date="1532032602938" expanded="true" signature="330:343" ph="INSERT INTO missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="330:345" ph="INSERT INTO " />
+            <marker date="1532032602938" expanded="true" signature="970:993" ph="UPDATE missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="976:993" ph="INSERT INTO missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="1659:1680" ph="DELETE FROM missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="1659:1682" ph="DELETE FROM " />
+            <marker date="1532032602938" expanded="true" signature="2204:2228" ph="SELECT missi... missing_value" />
+            <marker date="1532032602938" expanded="true" signature="2204:2230" ph="SELECT {} FR... " />
+            <marker date="1532032602938" expanded="true" signature="3472:3503" ph="SELECT count... missing_value" />
           </folding>
         </state>
       </provider>
@@ -433,7 +396,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -451,7 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -462,16 +426,17 @@
           <folding>
             <element signature="e#0#45#0" expanded="true" />
             <element signature="e#435#3580#0" expanded="false" />
-            <element signature="e#3619#4844#0" expanded="false" />
-            <element signature="e#4887#6286#0" expanded="false" />
-            <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#19829#21431#0" expanded="false" />
-            <element signature="e#22659#24367#0" expanded="false" />
-            <element signature="e#24423#25634#0" expanded="false" />
-            <element signature="e#25689#25850#0" expanded="false" />
-            <element signature="e#25910#26229#0" expanded="false" />
-            <element signature="e#26283#33234#0" expanded="false" />
+            <element signature="e#12369#17505#0" expanded="false" />
+            <element signature="e#17552#21648#0" expanded="false" />
+            <element signature="e#21690#23591#0" expanded="false" />
+            <element signature="e#23617#24642#0" expanded="false" />
+            <element signature="e#26363#27469#0" expanded="false" />
+            <element signature="e#27529#29237#0" expanded="false" />
+            <element signature="e#29293#30758#0" expanded="false" />
+            <element signature="e#30813#30974#0" expanded="false" />
+            <element signature="e#31031#31198#0" expanded="false" />
+            <element signature="e#31259#31764#0" expanded="false" />
+            <element signature="e#38826#44187#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -512,22 +477,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentdb/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding>
-            <element signature="e#636#668#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/index.html" />
     <entry file="file://$PROJECT_DIR$/static/css/sidebar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="72" column="1" lean-forward="true" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -535,15 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="44" column="122" lean-forward="false" selection-start-line="44" selection-start-column="122" selection-end-line="44" selection-end-column="122" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="49" column="15" lean-forward="false" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,20 +512,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addcourse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="306">
             <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -590,70 +526,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/teacherprofile.html" />
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/staffprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="91" column="22" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="91" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/imagePreviewer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4122">
+          <caret line="229" column="9" lean-forward="false" selection-start-line="229" selection-start-column="9" selection-end-line="229" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2664">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="23" column="111" lean-forward="false" selection-start-line="23" selection-start-column="111" selection-end-line="23" selection-end-column="111" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentdb/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="128" column="37" lean-forward="false" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+        <state relative-caret-position="328">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/teacherprofile.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="210" column="25" lean-forward="true" selection-start-line="199" selection-start-column="20" selection-end-line="210" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="180">
+          <caret line="60" column="45" lean-forward="false" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addinstructform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="522">
+          <caret line="29" column="17" lean-forward="true" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addcourse.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="81" column="14" lean-forward="true" selection-start-line="78" selection-start-column="8" selection-end-line="81" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="65" column="156" lean-forward="false" selection-start-line="65" selection-start-column="156" selection-end-line="65" selection-end-column="156" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/staffprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="91" column="22" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="91" selection-end-column="22" />
+        <state relative-caret-position="162">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -666,133 +613,175 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="64" column="76" lean-forward="false" selection-start-line="64" selection-start-column="76" selection-end-line="64" selection-end-column="76" />
-          <folding>
-            <element signature="e#448#724#0#HTML" expanded="false" />
-            <element signature="e#734#1644#0#HTML" expanded="false" />
-            <element signature="e#4944#6127#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="54" lean-forward="false" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        <state relative-caret-position="-1492">
+          <caret line="54" column="0" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addacademic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="149" column="76" lean-forward="false" selection-start-line="149" selection-start-column="76" selection-end-line="149" selection-end-column="76" />
+        <state relative-caret-position="2466">
+          <caret line="137" column="37" lean-forward="false" selection-start-line="131" selection-start-column="28" selection-end-line="137" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/imagePreviewer.js">
+    <entry file="file://$PROJECT_DIR$/departmentdb/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="341">
+          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="e#636#668#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/courseprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/tables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+        <state relative-caret-position="164">
+          <caret line="70" column="19" lean-forward="false" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
           <folding>
-            <marker date="1530997971463" expanded="true" signature="330:343" ph="INSERT INTO missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="330:345" ph="INSERT INTO " />
-            <marker date="1530997971463" expanded="true" signature="970:993" ph="UPDATE missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="976:993" ph="INSERT INTO missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="1659:1680" ph="DELETE FROM missing_value... " />
-            <marker date="1530997971463" expanded="true" signature="1659:1682" ph="DELETE FROM " />
-            <marker date="1530997971463" expanded="true" signature="2204:2228" ph="SELECT missi... missing_value" />
-            <marker date="1530997971463" expanded="true" signature="2204:2230" ph="SELECT {} FR... " />
-            <marker date="1530997971463" expanded="true" signature="2869:2900" ph="SELECT count... missing_value" />
+            <marker date="1532032602938" expanded="true" signature="330:343" ph="INSERT INTO missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="330:345" ph="INSERT INTO " />
+            <marker date="1532032602938" expanded="true" signature="970:993" ph="UPDATE missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="976:993" ph="INSERT INTO missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="1659:1680" ph="DELETE FROM missing_value... " />
+            <marker date="1532032602938" expanded="true" signature="1659:1682" ph="DELETE FROM " />
+            <marker date="1532032602938" expanded="true" signature="2204:2228" ph="SELECT missi... missing_value" />
+            <marker date="1532032602938" expanded="true" signature="2204:2230" ph="SELECT {} FR... " />
+            <marker date="1532032602938" expanded="true" signature="3472:3503" ph="SELECT count... missing_value" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/coursetable.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="143" column="120" lean-forward="false" selection-start-line="143" selection-start-column="120" selection-end-line="143" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academicprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="23" column="108" lean-forward="false" selection-start-line="23" selection-start-column="108" selection-end-line="23" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" column="98" lean-forward="false" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editacademic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="229" column="9" lean-forward="true" selection-start-line="229" selection-start-column="9" selection-end-line="229" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/editnonacademic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="906">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademicprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="23" column="111" lean-forward="false" selection-start-line="23" selection-start-column="111" selection-end-line="23" selection-end-column="111" />
+        <state relative-caret-position="432">
+          <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/departmentapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="678" column="28" lean-forward="false" selection-start-line="678" selection-start-column="28" selection-end-line="678" selection-end-column="28" />
+        <state relative-caret-position="560">
+          <caret line="243" column="48" lean-forward="false" selection-start-line="243" selection-start-column="48" selection-end-line="243" selection-end-column="48" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
             <element signature="e#435#3580#0" expanded="false" />
-            <element signature="e#3619#4844#0" expanded="false" />
-            <element signature="e#4887#6286#0" expanded="false" />
-            <element signature="e#6324#7455#0" expanded="false" />
-            <element signature="e#16820#18721#0" expanded="false" />
-            <element signature="e#19829#21431#0" expanded="false" />
-            <element signature="e#22659#24367#0" expanded="false" />
-            <element signature="e#24423#25634#0" expanded="false" />
-            <element signature="e#25689#25850#0" expanded="false" />
-            <element signature="e#25910#26229#0" expanded="false" />
-            <element signature="e#26283#33234#0" expanded="false" />
+            <element signature="e#12369#17505#0" expanded="false" />
+            <element signature="e#17552#21648#0" expanded="false" />
+            <element signature="e#21690#23591#0" expanded="false" />
+            <element signature="e#23617#24642#0" expanded="false" />
+            <element signature="e#26363#27469#0" expanded="false" />
+            <element signature="e#27529#29237#0" expanded="false" />
+            <element signature="e#29293#30758#0" expanded="false" />
+            <element signature="e#30813#30974#0" expanded="false" />
+            <element signature="e#31031#31198#0" expanded="false" />
+            <element signature="e#31259#31764#0" expanded="false" />
+            <element signature="e#38826#44187#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/addnonacademic.html">
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/course.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="64" column="65" lean-forward="true" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
+        <state relative-caret-position="1338">
+          <caret line="76" column="64" lean-forward="false" selection-start-line="76" selection-start-column="64" selection-end-line="76" selection-end-column="64" />
+          <folding>
+            <element signature="e#1355#1377#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="81" lean-forward="false" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="49" column="15" lean-forward="false" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/images/profile.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="122" lean-forward="false" selection-start-line="10" selection-start-column="122" selection-end-line="10" selection-end-column="122" />
+          <folding>
+            <element signature="n#style#0;n#strong#0;n#li#0;n#div#0;n#ul#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="136" column="32" lean-forward="true" selection-start-line="136" selection-start-column="32" selection-end-line="136" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academictable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="77" lean-forward="false" selection-start-line="8" selection-start-column="77" selection-end-line="8" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademictable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/academic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="145" column="62" lean-forward="true" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/departmentapp/templates/departmentapp/nonacademic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="121" column="62" lean-forward="false" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/excelExporter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
           <folding />
         </state>
       </provider>

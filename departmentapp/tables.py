@@ -65,6 +65,20 @@ def get(table_name,column_names,condition):
         except Exception as e:
             return {'error': True, 'message': str(e)}
 
+def filter(table_name,filter_columns,filter_values):
+    conditionlist = []
+    print(tuple(zip(filter_columns,filter_values)))
+    for data in zip(filter_columns,filter_values):
+        if data[1] != '':
+            conditionlist.append("{}='{}'".format(data[0],data[1]))
+    print(conditionlist)
+    condition = ' AND '.join(conditionlist)
+    print('The filtering condition is: {}'.format(condition))
+    result = get(table_name,'*',condition)
+    if not result['error'] and len(result['rows']) == 0:
+        result = {'error': True, 'message': 'Invalid combination of criterias'}
+    return result
+
 def count(table_name,column_name,condition):
     query = '''SELECT count({}) FROM {} WHERE {};'''.format(column_name,table_name,condition)
     print(query)
@@ -263,11 +277,11 @@ class course:
 
 
 class instructs:
-    field_names = ['staff_id','course_code','semester']
+    field_names = ['staff_id','course_code','semester','program']
 
-    def insert(staff_id,course_code,semester):
+    def insert(staff_id,course_code,semester,program):
         input_fields = []
-        arguments = [staff_id,course_code,semester]
+        arguments = [staff_id,course_code,semester,program]
         argdict = dict(zip(instructs.field_names, arguments))
         input_values = []
         for field in argdict:

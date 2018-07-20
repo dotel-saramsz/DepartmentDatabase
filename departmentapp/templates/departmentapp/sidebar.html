@@ -1,17 +1,23 @@
+{% load static %}
 <ul class="sidebar-nav" style="font-size: larger;padding: 15% 0;">
-    <li class="sidebar-brand">
-        {{ dept_code|upper }}
-    </li>
-    <li>
-        <a href="{% url 'departmentapp:dashboard' dept_code %}"><span class="fa fa-dashboard"></span> &nbsp; Dashboard</a>
-    </li>
-    <li>
-        <a href="{% url 'departmentapp:academic' dept_code %}"><span class="fa fa-user"></span> &nbsp; Academic Staff</a>
-    </li>
-    <li>
-        <a href="{% url 'departmentapp:nonacademic' dept_code %}"><span class="fa fa-user-secret"></span> &nbsp; Non Academic Staff</a>
-    </li>
-    <li>
-        <a href="{% url 'departmentapp:course' dept_code %}"><span class="fa fa-book"></span>  &nbsp; Course</a>
-    </li>
+    <div class="row">
+        <li class="sidebar-brand">
+            <img src="{% static 'images/logo.png' %}" width="40%" height="40%">
+            <strong style="color: whitesmoke">{{ dept_code|upper }}</strong>
+        </li>
+    </div>
+    <div class="row">
+        <li>
+            <a href="{% url 'departmentapp:dashboard' dept_code %}"><span class="fa fa-university"></span> &nbsp; Overview</a>
+        </li>
+        <li>
+            <a href="{% url 'departmentapp:academic' dept_code %}"><span class="fa fa-user"></span> &nbsp; Academic Staff</a>
+        </li>
+        <li>
+            <a href="{% url 'departmentapp:nonacademic' dept_code %}"><span class="fa fa-user"></span> &nbsp; Non Academic Staff</a>
+        </li>
+        <li>
+            <a href="{% url 'departmentapp:course' dept_code %}"><span class="fa fa-book"></span>  &nbsp; Course</a>
+        </li>
+    </div>
 </ul>
