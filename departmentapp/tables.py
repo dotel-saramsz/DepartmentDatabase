@@ -56,11 +56,9 @@ def get(table_name,column_names,condition):
             results = cursor.fetchall()
             rows = []
             columns = [each[0] for each in cursor.description]
-            print(columns)
             for result in results:
                 row = dict(zip(columns,result))
                 rows.append(row)
-            print(rows)
             return {'error': False, 'rows': rows}
         except Exception as e:
             return {'error': True, 'message': str(e)}
@@ -248,11 +246,11 @@ class nonacademic_post:
 
 
 class course:
-    field_names = ['course_code','course_name','department_id']
+    field_names = ['course_code','course_name','elective','department_id']
 
-    def insert(course_code,course_name,department_id):
+    def insert(course_code,course_name,elective,department_id):
         input_fields = []
-        arguments = [course_code,course_name,department_id]
+        arguments = [course_code,course_name,elective,department_id]
         argdict = dict(zip(course.field_names, arguments))
         input_values = []
         for field in argdict:
@@ -274,6 +272,21 @@ class course:
 
     def count(condition=1):
         return count('course','*',condition)
+
+    def update(course_code,course_name,elective,department_id,condition):
+        update_expressions = []
+        arguments = [course_code,course_name,elective,department_id]
+        argdict = dict(zip(course.field_names,arguments))
+        for field in argdict:
+            if argdict[field] is not None:
+                if isinstance(argdict[field],int):
+                    update_expressions.append('{} = {}'.format(field,argdict[field]))
+                elif isinstance(argdict[field],str):
+                    update_expressions.append("{} = '{}'".format(field,argdict[field]))
+            else:
+                update_expressions.append('{} = NULL'.format(field))
+
+        return update('course',','.join(update_expressions),condition)
 
 
 class instructs:

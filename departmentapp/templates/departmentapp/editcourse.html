@@ -9,43 +9,42 @@
     {% if not result.error %}
     <div class="row">
          <div class="page-header col-lg-12">
-             <h3>Add New Course</h3>
+             <h3>Update Course {{ result.initial_coursedetails.course_name }}</h3>
          </div>
     </div>
     <div class="row">
 
         <div class="col-lg-12">
-            {% if submissionresult %}
+            {% if updateError %}
                 <div class="row">
-                    <div class="alert {% if submissionresult.error %}alert-danger{% else %}alert-success{% endif %}">
-                        {{ submissionresult.message }}
+                    <div class="alert alert-danger">
+                        <h4>Please fill a valid form!</h4>
+                        <p>{{ updateError.message }}</p>
                     </div>
                     <hr>
                 </div>
             {% endif %}
 
             <div class="row">
-                <form id="addCourse" role="form" method="post" action="{% url 'departmentapp:add_course' result.department.dept_code %}">
+                <form id="updateCourse" role="form" method="post" action="{% url 'departmentapp:edit_course' result.department.dept_code result.initial_coursedetails.course_code %}">
                     {% csrf_token %}
 
                     <div class="col-lg-8 col-lg-push-2">
-                        <strong class="text-info">Please fill this information to register a new course</strong>
-                        <hr>
                         <div class="form-group">
                             <label for="course_code">Course Code </label>
-                            <input type="text" name="course_code"  id="course_code" class="form-control">
+                            <input type="text" name="course_code" value="{{ result.initial_coursedetails.course_code }}" id="course_code" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="course_name">Course Name </label>
-                            <input type="text" name="course_name" id="course_name" class="form-control">
+                            <input type="text" name="course_name" value="{{ result.initial_coursedetails.course_name }}" id="course_name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="elective">Elective </label>
-                            <input type="radio" name="elective" value="1" id="elective" style="margin-left: 4%"> Yes
-                            <input type="radio" name="elective" value="0" id="elective" style="margin-left: 4%"checked> No
+                            <input type="radio" name="elective" value="1" id="elective" style="margin-left: 4%" {% if result.initial_coursedetails.elective %}checked{% endif %}> Yes
+                            <input type="radio" name="elective" value="0" id="elective" style="margin-left: 4%" {% if not result.initial_coursedetails.elective %}checked{% endif %}> No
                         </div>
                         <hr>
-                        <input type="submit" value="Register Course" class="form-submit btn btn-primary">
+                        <input type="submit" value="Update Course" class="form-submit btn btn-primary">
                     </div>
                 </form>
                 <br>

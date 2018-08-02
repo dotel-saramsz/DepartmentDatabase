@@ -198,7 +198,7 @@ def course(request,dept_code):
             result = {'error': False, 'department': result['rows'][0]}
 
             #   To get the entire list of courses offered by that department
-            column_names = 'course_code,course_name'
+            column_names = 'course_code,course_name,elective'
             course_list = tables.course.get('department_id = {}'.format(result['department']['dept_id']),column_names)
             if course_list['error']:
                 raise Exception('Course List retrieval error')
@@ -317,11 +317,12 @@ def add_academic(request,dept_code):
                 print('Error in inserting academic details ' + academicInsert['message'])
                 raise Exception('Error in inserting academic details ' + academicInsert['message'])
             # Insert into canteach table
-            for eachcourse in formdata.get('course_code'):
-                canteachInsert = tables.canteach.insert(tables.nullresolver(formdata.get('staff_id')[0],True),eachcourse)
-                if canteachInsert['error']:
-                    print('Error in inserting course details ' + canteachInsert['message'])
-                    raise Exception('Error in inserting course details '+ canteachInsert['message'])
+            if formdata.get('course_code'):
+                for eachcourse in formdata.get('course_code'):
+                    canteachInsert = tables.canteach.insert(tables.nullresolver(formdata.get('staff_id')[0],True),eachcourse)
+                    if canteachInsert['error']:
+                        print('Error in inserting course details ' + canteachInsert['message'])
+                        raise Exception('Error in inserting course details '+ canteachInsert['message'])
             submissionresult = {'error': False, 'message': 'DONE: Successfully registered the academic staff with staff ID: {}'.format(formdata.get('staff_id')[0])}
 
         except Exception as e:
@@ -428,10 +429,11 @@ def add_course(request,dept_code):
             # Insert into course table
             courseInsert = tables.course.insert(formdata.get('course_code')[0],
                                                 formdata.get('course_name')[0],
+                                                int(formdata.get('elective')[0]),
                                                 result['department']['dept_id'])
             if courseInsert['error']:
                 print('Error in inserting course details ' + courseInsert['message'])
-                raise Exception('Error in inserting employee details '+courseInsert['message'])
+                raise Exception('Error in inserting course details '+courseInsert['message'])
 
             submissionresult = {'error': False, 'message': 'DONE: Successfully registered the course with course code: {}'.format(formdata.get('course_code')[0])}
 
@@ -600,34 +602,30 @@ def remove_instructor(request,dept_code,course_code):
 def edit_academic(request,dept_code,staff_id):
     #   This function needs to handle get request to cater new form and post request to manage form submissions
     result = tables.department.get("dept_code = '{}'".format(dept_code))
-    if not result['error']:
-        try:
-            #   To get the department details
-            result = {'error': False, 'department': result['rows'][0]}
+    #   To get the department details
+    result = {'error': False, 'department': result['rows'][0]}
 
+    #   Data retrieval for the form options ------------------
+    #   To get the available posts' list for form dropdown
+    postlist = tables.academic_post.getall()
+    result['postlist'] = postlist['rows']
+
+    #   To get the course catered by the department for the form dropdown
+    courselist = tables.course.get('department_id = {}'.format(result['department']['dept_id']))
+    result['courselist'] = courselist['rows']
+
+    if request.method == 'GET':
+        try:
             #   To get the initial staff details before update
             initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(staff_id))
-            if initial_staffdetails['error']:
+            if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:
                 raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
             result['initial_staffdetails'] = initial_staffdetails['rows'][0]
 
             #   To get the initial canteach course details before update
             initial_canteach = tables.get(tables.join('canteach', 'course'), '*', 'staff_id = {}'.format(staff_id))
             if not initial_canteach['error']:
-                result['initial_canteach'] = [ each['course_code'] for each in initial_canteach['rows']]
-
-            #   Data retrieval for the form options ------------------
-            #   To get the available posts' list for form dropdown
-            postlist = tables.academic_post.getall()
-            if postlist['error']:
-                raise Exception('Post List retrieval error')
-            result['postlist'] = postlist['rows']
-
-            #   To get the course catered by the department for the form dropdown
-            courselist = tables.course.get('department_id = {}'.format(result['department']['dept_id']))
-            if courselist['error']:
-                raise Exception('Available Course List retrieval error')
-            result['courselist'] = courselist['rows']
+                result['initial_canteach'] = [each['course_code'] for each in initial_canteach['rows']]
 
         except IndexError as e:
             result = {'error': True, 'message': 'No such department is enlisted in the database'}
@@ -636,13 +634,27 @@ def edit_academic(request,dept_code,staff_id):
             result = {'error': True, 'department': result['department'],
                       'message': 'There was an error in querying the database: {}'.format(str(e))}
 
-    if request.method == 'GET':
         return render(request, 'departmentapp/editacademic.html', {'result': result})
 
     elif request.method == 'POST':
         formdata = dict(request.POST.copy())
         # Here, we need to insert to 3 tables based on the submitted data: employee, academic and canteach
         try:
+            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0], True)
+            #   To get the initial staff details before update
+            initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(staff_id))
+            if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:
+                initial_staffdetails = tables.get('academicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+                if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:
+                    raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
+            #   To get the initial canteach course details before update
+            initial_canteach = tables.get(tables.join('canteach', 'course'), '*', 'staff_id = {}'.format(staff_id))
+            if initial_canteach['error'] or len(initial_canteach['rows']) == 0:
+                initial_canteach = tables.get(tables.join('canteach', 'course'), '*', 'staff_id = {}'.format(new_staff_id))
+            result['initial_canteach'] = [each['course_code'] for each in initial_canteach['rows']]
+
             # Resolve the uploaded file first
             try:
                 staff_photo = request.FILES['photo_url']
@@ -656,8 +668,6 @@ def edit_academic(request,dept_code,staff_id):
                 print('Finished creating the image')
             except MultiValueDictKeyError:
                 photo_url = None
-
-            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0],True)
 
             if photo_url is None and result['initial_staffdetails']['photo_url'] is not None:
                 photo_url = result['initial_staffdetails']['photo_url']
@@ -700,11 +710,12 @@ def edit_academic(request,dept_code,staff_id):
             removeinitial = tables.delete('canteach','staff_id = {}'.format(new_staff_id))
 
             #----then, add the new entries from form
-            for eachcourse in formdata.get('course_code'):
-                canteachInsert = tables.canteach.insert(new_staff_id,eachcourse)
-                if canteachInsert['error']:
-                    print('Error in inserting course details ' + canteachInsert['message'])
-                    raise Exception('Error in inserting course details ' + canteachInsert['message'])
+            if formdata.get('course_code'):
+                for eachcourse in formdata.get('course_code'):
+                    canteachInsert = tables.canteach.insert(new_staff_id,eachcourse)
+                    if canteachInsert['error']:
+                        print('Error in inserting course details ' + canteachInsert['message'])
+                        raise Exception('Error in inserting course details ' + canteachInsert['message'])
 
             return redirect('departmentapp:academic_profile',dept_code=dept_code,staff_id=new_staff_id)
 
@@ -718,24 +729,22 @@ def edit_academic(request,dept_code,staff_id):
 def edit_nonacademic(request,dept_code,staff_id):
     #   This function needs to handle get request to cater new form and post request to manage form submissions
     result = tables.department.get("dept_code = '{}'".format(dept_code))
-    if not result['error']:
-        try:
-            #   To get the department details
-            result = {'error': False, 'department': result['rows'][0]}
+    result = {'error': False, 'department': result['rows'][0]}
 
+    #   Data retrieval for the form options ------------------
+    #   To get the available posts' list for form dropdown
+    postlist = tables.nonacademic_post.getall()
+    if postlist['error']:
+        raise Exception('Post List retrieval error')
+    result['postlist'] = postlist['rows']
+
+    if request.method == 'GET':
+        try:
             #   To get the initial staff details before update
             initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(staff_id))
-            if initial_staffdetails['error']:
+            if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:
                 raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(staff_id))
             result['initial_staffdetails'] = initial_staffdetails['rows'][0]
-
-            #   Data retrieval for the form options ------------------
-            #   To get the available posts' list for form dropdown
-            postlist = tables.nonacademic_post.getall()
-            if postlist['error']:
-                raise Exception('Post List retrieval error')
-            result['postlist'] = postlist['rows']
-
 
         except IndexError as e:
             result = {'error': True, 'message': 'No such department is enlisted in the database'}
@@ -744,13 +753,21 @@ def edit_nonacademic(request,dept_code,staff_id):
             result = {'error': True, 'department': result['department'],
                       'message': 'There was an error in querying the database: {}'.format(str(e))}
 
-    if request.method == 'GET':
         return render(request, 'departmentapp/editnonacademic.html', {'result': result})
 
     elif request.method == 'POST':
         formdata = dict(request.POST.copy())
         # Here, we need to update 2 tables based on the submitted data: employee, nonacademic
         try:
+            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0], True)
+            #   To get the initial staff details before update
+            initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(staff_id))
+            if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:  #Staff ID was changed but error occurred, so now can't find the record
+                initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(new_staff_id))
+                if initial_staffdetails['error'] or len(initial_staffdetails['rows']) == 0:
+                    raise Exception('Couldnt fetch the staff profile for staff_id:{}'.format(new_staff_id))
+            result['initial_staffdetails'] = initial_staffdetails['rows'][0]
+
             # Resolve the uploaded file first
             try:
                 staff_photo = request.FILES['photo_url']
@@ -764,8 +781,6 @@ def edit_nonacademic(request,dept_code,staff_id):
                 print('Finished creating the image')
             except MultiValueDictKeyError:
                 photo_url = None
-
-            new_staff_id = tables.nullresolver(formdata.get('staff_id')[0], True)
 
             if photo_url is None and result['initial_staffdetails']['photo_url'] is not None:
                 photo_url = result['initial_staffdetails']['photo_url']
@@ -795,7 +810,7 @@ def edit_nonacademic(request,dept_code,staff_id):
                                                     'staff_id = {}'.format(new_staff_id))
             if nonacademicUpdate['error']:
                 print('Error in updating non-academic staff details ' + nonacademicUpdate['message'])
-                raise Exception('Error in inserting non-academic staff details ' + nonacademicUpdate['message'])
+                raise Exception('Error in updating non-academic staff details ' + nonacademicUpdate['message'])
 
             initial_staffdetails = tables.get('nonacademicsummary', '*', 'staff_id = {}'.format(new_staff_id))
             result['initial_staffdetails'] = initial_staffdetails['rows'][0]
@@ -807,3 +822,57 @@ def edit_nonacademic(request,dept_code,staff_id):
 
             return render(request, 'departmentapp/editnonacademic.html',
                           {'result': result, 'updateError': updateError})
+
+
+def edit_course(request,dept_code,course_code):
+    #   This function needs to handle get request to cater new form and post request to manage form submissions
+    result = tables.department.get("dept_code = '{}'".format(dept_code))
+    result = {'error': False, 'department': result['rows'][0]}
+
+    if request.method == 'GET':
+        try:
+            #   To get the initial course details before update
+            initial_coursedetails = tables.get('course', '*', "course_code = '{}'".format(course_code))
+            if initial_coursedetails['error'] or len(initial_coursedetails['rows']) == 0:
+                raise Exception('Couldnt fetch the course information for course_code:{}'.format(course_code))
+            result['initial_coursedetails'] = initial_coursedetails['rows'][0]
+
+        except IndexError as e:
+            result = {'error': True, 'message': 'No such department is enlisted in the database'}
+
+        except Exception as e:
+            result = {'error': True, 'department': result['department'],
+                      'message': 'There was an error in querying the database: {}'.format(str(e))}
+
+        return render(request, 'departmentapp/editcourse.html', {'result': result})
+
+    elif request.method == 'POST':
+        formdata = dict(request.POST.copy())
+        new_course_code = formdata.get('course_code')[0]
+        # Here, we need to insert to 1 table based on the submitted data: course
+        try:
+            #   To get the initial course details before update
+            initial_coursedetails = tables.get('course', '*', "course_code = '{}'".format(course_code))
+            if initial_coursedetails['error'] or len(initial_coursedetails['rows']) == 0:
+                initial_coursedetails = tables.get('course', '*', "course_code = '{}'".format(new_course_code))
+                if initial_coursedetails['error'] or len(initial_coursedetails['rows']) == 0:
+                    raise Exception('Couldnt fetch the course information for course_code:{}'.format(new_course_code))
+            result['initial_coursedetails'] = initial_coursedetails['rows'][0]
+
+            # Insert into course table
+            courseUpdate = tables.course.update(formdata.get('course_code')[0],
+                                                formdata.get('course_name')[0],
+                                                int(formdata.get('elective')[0]),
+                                                result['department']['dept_id'],
+                                                "course_code = '{}'".format(course_code))
+            if courseUpdate['error']:
+                raise Exception('Error in updating course details ' + courseUpdate['message'])
+
+            return redirect('departmentapp:course_profile', dept_code=dept_code, course_code=new_course_code)
+
+        except Exception as e:
+            updateError = {'error': True, 'message': 'UPDATE ERROR: ' + str(e)}
+
+            return render(request, 'departmentapp/editcourse.html',
+                      {'result': result, 'updateError': updateError})
+

@@ -10,6 +10,7 @@
                 <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
+                    <th>Elective</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,11 @@
                     <tr class="course-row" data-href="{% url 'departmentapp:course_profile' result.department.dept_code course.course_code %}">
                         <td>{{ course.course_code }}</td>
                         <td>{{ course.course_name }}</td>
+                        <td style="text-align: center">
+                            {% if course.elective == 1 %}
+                                <span class="fa fa-check-circle"></span>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

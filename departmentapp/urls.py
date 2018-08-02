@@ -20,6 +20,7 @@ urlpatterns = [
     path('<dept_code>/course/add', views.add_course, name='add_course'),
     path('<dept_code>/course/filter', views.filter_course, name='filter_course'),
     path('<dept_code>/course/<course_code>', views.course_profile, name='course_profile'),
+    path('<dept_code>/course/<course_code>/edit', views.edit_course, name='edit_course'),
     path('<dept_code>/ajax/addinstruct/<course_code>', views.add_instruct, name='add_instruct'),
     path('<dept_code>/ajax/deletestaff/<staff_id>', views.delete_employee, name='delete_employee'),
     path('<dept_code>/ajax/deletecourse/<course_code>', views.delete_course, name='delete_course'),

@@ -9,20 +9,28 @@
     {% if not result.error %}
     <div class="row">
          <div class="page-header col-lg-12">
-             <h3>{{ result.course.course_name }} ({{ result.course.course_code }})</h3>
+            <span style="font-size: 200%">{{ result.course.course_name }} ({{ result.course.course_code }})</span>
+            {% if result.course.elective %}
+                <span class="label label-info" style="margin-left: 2%; font-size: 100%">
+                 Elective
+                </span>
+            {% endif %}
          </div>
     </div>
     <div class="row">
 
-        <div class="col-lg-3">
-            <button class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteCourseModal">
-                <span class="fa fa-edit"></span> Delete Course
+        <div class="col-lg-4">
+            <button class="btn btn-danger " data-toggle="modal" data-target="#deleteCourseModal">
+                <span class="fa fa-trash"></span> Delete Course
             </button>
+            <a class="btn btn-primary" href="{% url 'departmentapp:edit_course' result.department.dept_code result.course.course_code %}">
+                <span class="fa fa-edit"></span> Update Course
+            </a>
         </div>
 
-        <div class="col-lg-3 col-lg-push-6">
+        <div class="col-lg-3 col-lg-push-5">
             <button class="btn btn-success pull-right" data-target="#addInstructorModal" data-toggle="modal">
-                    <span class="glyphicon glyphicon-pencil"></span> Assign New Instructor
+                    <span class="glyphicon glyphicon-plus-sign"></span> Assign New Instructor
             </button>
         </div>
 
@@ -71,8 +79,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2" style="margin-top: 3%">
+    <div class="row" >
+        <div class="col-lg-8 col-lg-offset-2" style="margin-top: 0%">
             <div id="instructs-table-wrapper" class="row">
                 <hr>
                 <h4>Academic staffs currently teaching this course:</h4>
