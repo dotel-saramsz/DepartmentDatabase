@@ -76,7 +76,7 @@ def academic(request,dept_code):
 
             #   To get the entire list of academic staffs in that department
             column_names = 'staff_id,salutation,staff_fname,staff_mname,staff_lname,email,mobile_contact,designation'
-            staff_list = tables.get('academicsummary',column_names,'department_id = {}'.format(result['department']['dept_id']))
+            staff_list = tables.get('academicsummary',column_names,'department_id = {}'.format(result['department']['dept_id']),order='staff_fname')
             if staff_list['error']:
                 raise Exception('Academic Staff retrieval error')
             result['staff_list'] = staff_list['rows']
@@ -112,7 +112,7 @@ def filter_academic(request,dept_code):
             filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
             filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
 
-            staff_list = tables.filter('academicsummary',filter_columns,filter_values)
+            staff_list = tables.filter('academicsummary',filter_columns,filter_values,order='staff_fname')
             if staff_list['error']:
                 raise Exception('No academic staffs were found with the specified criterias')
             result['staff_list'] = staff_list['rows']
@@ -135,11 +135,11 @@ def nonacademic(request,dept_code):
             #   To get the department details
             result = {'error': False, 'department': result['rows'][0]}
 
-            #   To get the entire list of academic staffs in that department
+            #   To get the entire list of non-academic staffs in that department
             column_names = 'staff_id,staff_fname,staff_mname,staff_lname,email,mobile_contact,post_name'
             staff_list = tables.get(tables.join(tables.join('nonacademic', 'employee'),'nonacademic_post','left',
                                                 on='nonacademic.post_id=nonacademic_post.post_id'), column_names,
-                                    'department_id = {}'.format(result['department']['dept_id']))
+                                    'department_id = {}'.format(result['department']['dept_id']),order='staff_fname')
             if staff_list['error']:
                 raise Exception('Non-Academic Staff retrieval error')
             result['staff_list'] = staff_list['rows']
@@ -174,7 +174,7 @@ def filter_nonacademic(request,dept_code):
             filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
             filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
 
-            staff_list = tables.filter('nonacademicsummary',filter_columns,filter_values)
+            staff_list = tables.filter('nonacademicsummary',filter_columns,filter_values,order='staff_fname')
             if staff_list['error']:
                 raise Exception('No non-academic staffs were found with the specified criterias')
             result['staff_list'] = staff_list['rows']
@@ -229,7 +229,7 @@ def filter_course(request,dept_code):
             filter_columns = [field for field in formdata if field!='csrfmiddlewaretoken']
             filter_values = [formdata[field][0] for field in formdata if field!='csrfmiddlewaretoken']
 
-            course_list = tables.filter('course',filter_columns,filter_values)
+            course_list = tables.filter('course',filter_columns,filter_values,order='course_name')
             if course_list['error']:
                 raise Exception('No course was found with the specified course ID')
             result['course_list'] = course_list['rows']
@@ -578,6 +578,7 @@ def add_instruct(request,dept_code,course_code):
     except Exception as e:
         result['submission'] = {'error': True, 'message': str(e)}
     return render(request, 'departmentapp/addinstructform.html', {'result': result})
+
 
 def delete_employee(request,dept_code,staff_id):
     deleteResult = tables.delete('employee','staff_id = {}'.format(staff_id))

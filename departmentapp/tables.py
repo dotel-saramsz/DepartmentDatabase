@@ -47,8 +47,11 @@ def delete(table_name,condition):
             transaction.rollback()
             return {'error': True, 'message': "Couldn't perform the deletion operation in {}. Details:- {}".format(table_name,str(e))}
 
-def get(table_name,column_names,condition):
-    query = '''SELECT {} FROM {} WHERE {};'''.format(column_names,table_name,condition)
+def get(table_name,column_names,condition, order=None):
+    if order is not None:
+        query = '''SELECT {} FROM {} WHERE {} ORDER BY {};'''.format(column_names, table_name, condition, order)
+    else:
+        query = '''SELECT {} FROM {} WHERE {};'''.format(column_names,table_name,condition)
     print(query)
     with connection.cursor() as cursor:
         try:
@@ -63,7 +66,7 @@ def get(table_name,column_names,condition):
         except Exception as e:
             return {'error': True, 'message': str(e)}
 
-def filter(table_name,filter_columns,filter_values):
+def filter(table_name,filter_columns,filter_values,order=None):
     conditionlist = []
     print(tuple(zip(filter_columns,filter_values)))
     for data in zip(filter_columns,filter_values):
@@ -72,7 +75,7 @@ def filter(table_name,filter_columns,filter_values):
     print(conditionlist)
     condition = ' AND '.join(conditionlist)
     print('The filtering condition is: {}'.format(condition))
-    result = get(table_name,'*',condition)
+    result = get(table_name,'*',condition,order)
     if not result['error'] and len(result['rows']) == 0:
         result = {'error': True, 'message': 'Invalid combination of criterias'}
     return result
@@ -263,12 +266,12 @@ class course:
     def getall(column_names=None):
         if column_names is None:
             column_names = '*'
-        return get('course',column_names,condition=1)
+        return get('course',column_names,condition=1,order='course_name')
 
     def get(condition,column_names=None):
         if column_names is None:
             column_names = '*'
-        return get('course',column_names,condition)
+        return get('course',column_names,condition,order='course_name')
 
     def count(condition=1):
         return count('course','*',condition)
